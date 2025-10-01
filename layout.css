@@ -22,12 +22,18 @@ h1 {
     margin: 0;
 
 }
-main {
+.div1 {
     flex: 1;  /* takes up available space and pushes footer down */
-    
   }
+
+.div2 a {
+    float: right;
+}
+.div2 img {
+    margin: 5px;
+}
   
-nav {
+.navcenter {
     display: flex;
     flex-direction: column;   /* stack items vertically */
     align-items: center;      /* center horizontally */
@@ -36,7 +42,7 @@ nav {
     margin-bottom: 20px;  
   }
   
-  nav a {
+.navcenter a {
     background-color: teal;
     color: white;
     text-decoration: none;
@@ -47,16 +53,36 @@ nav {
     width: 150px;             /* keeps them the same size */
     font-family:sans-serif
   }
-  .position{
-    margin-bottom: 20px;
+.navtop {
+    display: flex;
+    background-color: rgb(104, 141, 230);
+    padding: 5px;
+    text-align: center;
+    justify-content: space-evenly;
+    color: white;
   }
-  footer {
-    background-color:  rgb(61, 13, 117);
-  }
-  footer p {
-    color: White;
-  }
-  @media screen {
-
+#linked {
+    color: rgb(235, 19, 19);
+    font-weight: bolder;
+}
+.navtop a{
+    text-decoration: none;
+    color: white;
+    font-family:Georgia, 'Times New Roman', Times, serif
     
-  }
+}
+.navtop a:hover{
+    font-weight: bolder;
+}
+
+.position{
+    margin-bottom: 20px;
+}
+footer {
+    margin-top: 0;
+    padding-top: 0;
+    background-color:  rgb(61, 13, 117);
+}
+footer p {
+    color: White;
+}
