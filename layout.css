@@ -24,6 +24,7 @@ h1 {
 }
 main {
     flex: 1;  /* takes up available space and pushes footer down */
+    
   }
   
 nav {
