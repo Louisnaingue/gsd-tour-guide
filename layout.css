@@ -1,0 +1,61 @@
+body {
+    margin: 0;
+    padding: 0;
+    max-width: auto;
+    background-image: url(images/hawaii.png);
+    height: 100vh; /* full height of screen */
+    background-size: cover;      /* cover the whole page */
+    background-position: center; /* center the image */
+    background-repeat: no-repeat; /* no repeat */
+    display: flex;
+    flex-direction: column;     /* stack header, main, footer */
+}
+header {
+    text-align: center;
+    background-color: rgb(61, 13, 117);
+    padding: 0;
+    margin: 0;
+}
+h1 {
+    color: antiquewhite;
+    padding: 10px;
+    margin: 0;
+
+}
+main {
+    flex: 1;  /* takes up available space and pushes footer down */
+  }
+  
+nav {
+    display: flex;
+    flex-direction: column;   /* stack items vertically */
+    align-items: center;      /* center horizontally */
+    gap: 15px;                /* space between buttons */
+    margin-top: 20px;         /* optional: push down */
+    margin-bottom: 20px;  
+  }
+  
+  nav a {
+    background-color: teal;
+    color: white;
+    text-decoration: none;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-weight: bold;
+    text-align: center;
+    width: 150px;             /* keeps them the same size */
+    font-family:sans-serif
+  }
+  .position{
+    margin-bottom: 20px;
+  }
+  footer {
+    background-color:  rgb(61, 13, 117);
+  }
+  footer p {
+    color: White;
+  }
+  @media screen {
+
+    
+  }
