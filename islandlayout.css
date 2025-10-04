@@ -34,13 +34,19 @@ h1 {
     margin: 5px;
   
 }
-.picheader img {
-    display: block;
-    justify-content: center;
-    margin: 0;
-    padding: 0;
-    
+.picheader {
+    border: 10px solid white;
+    text-align: center;
+    color: black;
+    background-color: rgb(249, 240, 240);
+    box-shadow: 10px 10px 20px black;
+    padding: 10px; /* gives some space inside */
 }
+.picheader img {
+    max-width: 100%;
+    height: auto;
+}
+
 section {
     margin: 10px;
 }
@@ -65,7 +71,7 @@ section {
     text-align: center;
     width: 150px;             /* keeps them the same size */
     font-family:sans-serif
-  }
+}
 .navtop {
     display: flex;
     background-color: rgb(104, 141, 230);
@@ -98,4 +104,18 @@ footer {
 }
 footer p {
     color: White;
+}
+.main {
+    display: flex;
+    flex: 1;
+}
+aside {
+    color: white;
+    background-color: #5e97a1;
+    padding: 20px;
+    width: 200px;
+}
+.sidebar-nav a {
+    font-size: small;
+
 }

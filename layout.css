@@ -32,7 +32,6 @@ h1 {
 .div2 img {
     margin: 5px;
 }
-  
 .navcenter {
     display: flex;
     flex-direction: column;   /* stack items vertically */
