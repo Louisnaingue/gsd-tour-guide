@@ -47,10 +47,28 @@ h1 {
     height: auto;
 }
 
+.picheader1 {
+    border: 10px solid white;
+    text-align: center;
+    color: black;
+    background-color: rgb(249, 240, 240);
+    box-shadow: 10px 10px 20px black;
+    padding: 10px; /* gives some space inside */
+}
+.picheader1 img {
+    max-width: 100%;
+    height: auto;
+}
+
 section {
     margin: 10px;
 }
-
+.parcenter {
+    text-align: justify;
+}
+#basic-facts {
+    padding: 10px;
+}
   
 .navcenter {
     display: flex;
@@ -110,26 +128,30 @@ footer p {
     flex: 1;
 }
 aside {
-    color: white;
+    color: rgb(10, 9, 9);
     background-color: #d1bfde;
     padding: 15px;
     width: 200px;
     text-align: center;
     font-size: large;
     font-weight: bolder;
+    margin: 0;
+    padding: 5px;
 }
 .sidebar-nav a {
+    font-family:serif;
     display: block;             /* makes each link a box */
-    border: 2px solid black;    /* box border */
+    border: 1px solid black;    /* box border */
     background-color: #ffffff;  /* light background */
-    color: rgb(0, 0, 0);               /* text color */
-    padding: 5px;              /* space inside the box */
-    margin: 1px;              /* space between boxes */
+    color: rgb(87, 89, 101);               /* text color */
+    padding: 1px;              /* space inside the box */
+    margin: 5px;              /* space between boxes */
     text-decoration: none;      /* removes underline */
     font-size: small;
     font-weight: bold;
     text-align: center;
     text-decoration: none;
+    box-shadow: 2px 1px;
 
 }
 .sidebar-nav {
@@ -137,6 +159,8 @@ aside {
     flex-direction: column; /* puts items side by side */
     padding: 0;
     margin: 0;
+/* Paragrah*/
+
 
 }
  @media screen {
