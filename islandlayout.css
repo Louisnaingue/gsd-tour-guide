@@ -111,11 +111,44 @@ footer p {
 }
 aside {
     color: white;
-    background-color: #5e97a1;
-    padding: 20px;
+    background-color: #d1bfde;
+    padding: 15px;
     width: 200px;
+    text-align: center;
+    font-size: large;
+    font-weight: bolder;
 }
 .sidebar-nav a {
+    display: block;             /* makes each link a box */
+    border: 2px solid black;    /* box border */
+    background-color: #ffffff;  /* light background */
+    color: rgb(0, 0, 0);               /* text color */
+    padding: 5px;              /* space inside the box */
+    margin: 1px;              /* space between boxes */
+    text-decoration: none;      /* removes underline */
     font-size: small;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
 
 }
+.sidebar-nav {
+    display: flex;
+    flex-direction: column; /* puts items side by side */
+    padding: 0;
+    margin: 0;
+
+}
+ @media screen {
+    .sidebar-nav {
+        display: flex;
+        flex-direction: column; /* puts items side by side */
+        padding: 0;
+        margin: 0;
+        width: 120px; /* fixed width for consistent box size */
+
+    
+    }
+
+    
+ }
