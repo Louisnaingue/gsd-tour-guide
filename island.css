@@ -9,6 +9,41 @@ body {
     top: 0;                       
     left: 0;
     width: 100%;                 
+    background-color: rgb(32, 86, 125);
+}
+.head1 {
+    position: fixed;              
+    top: 0;                       
+    left: 0;
+    width: 100%;                 
+    background-color: rgb(219, 158, 46);
+}
+.head2 {
+    position: fixed;              
+    top: 0;                       
+    left: 0;
+    width: 100%;                 
+    background-color: rgb(134, 47, 3);
+}
+.head3 {
+    position: fixed;              
+    top: 0;                       
+    left: 0;
+    width: 100%;                 
+    background-color: rgb(55, 19, 77);
+}
+.head4 {
+    position: fixed;              
+    top: 0;                       
+    left: 0;
+    width: 100%;                 
+    background-color: rgb(102, 179, 20);
+}
+.head5 {
+    position: fixed;              
+    top: 0;                       
+    left: 0;
+    width: 100%;                 
     background-color: rgb(164, 16, 31);
 }
 h1 {
@@ -23,7 +58,7 @@ h4 {
 }
 li {
     font-family:  "Merriweather", serif;
-    font-size: x-small;
+    font-size: 12px;
 
 }
 .subtitle {
@@ -112,12 +147,11 @@ h3{
     left: 0;
     top: 60px;
     width: 150px;
-    background-color: rgb(243, 180, 180);
+    background-color: rgba(255, 255, 255, 0.3); 
+    backdrop-filter: blur(15px);
     overflow: hidden;
     transition: height 0.3s ease;
     border-bottom-right-radius: 10px;
-    box-shadow: 2px 2px;
-
 }
 
 /* When open */
@@ -162,7 +196,7 @@ h3{
     text-align: center;
     color: black;
     background-color: rgb(249, 240, 240);
-    box-shadow: 10px 10px 20px black;
+    box-shadow: 5px 2px 5px black;
     padding: 10px; /* gives some space inside */
 }
 .picheader img {
@@ -190,9 +224,9 @@ section {
 }
 footer {
     font-family: serif;
+    font-size: x-small;
     margin-top: 0;
     padding: 0;
-    background-color:  rgb(61, 13, 117);
 }
 footer p {
     color: White;
@@ -208,7 +242,7 @@ main {
     padding-right: 10px ;
 }
 main p {
-    font-size: x-small;
+    font-size: 12px;
 }
 .figcap {
     font-size: x-small;
@@ -245,6 +279,34 @@ p {
 .image-left1 img {
     width: 250px;             /* set image width */
     height: auto;             /* keeps proportion */
+}
+.samoa {
+    background-color: rgb(32, 86, 125);
+}
+.hawaii {
+    background-color: rgb(219, 158, 46);
+}
+.tonga {
+    background-color: rgb(164, 16, 31);
+
+}
+.nz {
+    background-color: rgb(55, 19, 77);
+}
+.fiji {
+    background-color: rgb(134, 47, 3);
+}
+.tahiti {
+    background-color: rgb(102, 179, 20);
+}
+
+.term {
+    margin: 0;
+    text-align: left;
+}
+.pos {
+    margin-left: 20px;
+    margin-right: 20px;
 }
 /* Responsive (mobile view) */
 @media screen and (max-width: 768px) {

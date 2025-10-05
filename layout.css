@@ -32,6 +32,27 @@ h1 {
 .div2 img {
     margin: 5px;
 }
+/*
+#hawaii {
+    background-color: rgb(219, 158, 46);
+}
+#tonga {
+    background-color: rgb(164, 16, 31);
+
+}
+#samoa {
+    background-color: rgb(32, 86, 125);
+}
+#aotearoa {
+    background-color: rgb(55, 19, 77);
+}
+#fiji {
+    background-color: rgb(134, 47, 3);
+}
+#tahiti {
+    background-color: rgb(102, 179, 20);
+}
+*/
 .navcenter {
     display: flex;
     flex-direction: column;   /* stack items vertically */
@@ -39,7 +60,7 @@ h1 {
     gap: 15px;                /* space between buttons */
     margin-top: 20px;         /* optional: push down */
     margin-bottom: 20px;  
-  }
+}
   
 .navcenter a {
     background-color: teal;
