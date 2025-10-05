@@ -46,6 +46,14 @@ body {
     width: 100%;                 
     background-color: rgb(164, 16, 31);
 }
+.head6 {
+    position: fixed;              
+    top: 0;                       
+    left: 0;
+    width: 100%;                 
+    background-color: rgb(61, 13, 117);
+}
+
 h1 {
     font-family: "Cinzel", serif;
 }
@@ -308,6 +316,9 @@ p {
 .tahiti {
     background-color: rgb(102, 179, 20);
 }
+.train {
+    background-color: rgb(61, 13, 117);
+}
 
 .term {
     margin: 0;
@@ -317,7 +328,14 @@ p {
     margin-left: 20px;
     margin-right: 20px;
 }
-/* Responsive (mobile view) */
+.vid-content {
+    display: flex;
+    justify-content: center; /* centers content horizontally */
+    max-width: 500px;
+    width: 90%;
+    margin-left: 10px;
+}
+/*Responsive (mobile view) */
 @media screen and (max-width: 768px) {
 .navbar .links {
     display: none;
