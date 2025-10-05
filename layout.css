@@ -63,7 +63,8 @@ h1 {
 }
   
 .navcenter a {
-    background-color: teal;
+    background-color: rgba(255, 255, 255, 0.3); 
+    backdrop-filter: blur(15px);
     color: white;
     text-decoration: none;
     padding: 12px 30px;
@@ -91,8 +92,8 @@ h1 {
     font-family:Georgia, 'Times New Roman', Times, serif
     
 }
-.navtop a:hover{
-    font-weight: bolder;
+.navcenter a:hover{
+    background-color: rgb(61, 13, 117);
 }
 
 .position{
