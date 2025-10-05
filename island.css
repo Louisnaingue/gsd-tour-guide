@@ -9,7 +9,10 @@ body {
     top: 0;                       
     left: 0;
     width: 100%;                 
-    background-color: rgb(61, 13, 117);
+    background-color: rgb(164, 16, 31);
+}
+h1 {
+    font-family: "Cinzel", serif;
 }
 
 li {
@@ -44,7 +47,7 @@ header {
 
 }
 h2 {
-    background-color: blueviolet;
+    background-color: rgb(164, 135, 86);
     text-align: center;
     color: rgb(246, 246, 246);
     padding: 10px;
@@ -79,7 +82,7 @@ h2 {
     left: 0;
     top: 60px;
     width: 150px;
-    background-color: rgb(240, 236, 244);
+    background-color: rgb(243, 180, 180);
     overflow: hidden;
     transition: height 0.3s ease;
     border-bottom-right-radius: 10px;
@@ -90,7 +93,7 @@ h2 {
 /* When open */
 .dropmenu.open {
     display: block;
-    height: 260px;
+    height: 250px;
 }
 
 /* Menu items */
@@ -108,13 +111,14 @@ h2 {
     padding: 0;
     width: 100%;
     font-family: sans-serif;
+    font-size: small;
 }
   
 
 .dropmenu a {
     color: rgb(0, 0, 0); border: 1px solid black;    /* box border */
     background-color: #ffffff;  /* light background */
-    color: rgb(87, 89, 101);               /* text color */
+    color: rgb(91, 33, 56);               /* text color */
     padding: 1px;              /* space inside the box */
     margin: 0;              /* space between boxes */ 
     width: 120px;
@@ -155,6 +159,7 @@ section {
     margin-bottom: 20px;
 }
 footer {
+    font-family: serif;
     margin-top: 0;
     padding: 0;
     background-color:  rgb(61, 13, 117);
