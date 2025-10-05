@@ -1,0 +1,195 @@
+body {
+    height: 100vh;
+    background-color: rgb(243, 249, 248);
+    margin: 0;
+    font-family:  "Merriweather", serif;
+}
+.head {
+    position: fixed;              
+    top: 0;                       
+    left: 0;
+    width: 100%;                 
+    background-color: rgb(61, 13, 117);
+}
+
+li {
+    list-style: none;
+}
+
+li a {
+    text-decoration: none;
+    color: black;
+    font-size: 1em;
+}
+
+header {
+    position: relative;
+    padding: 0 2rem;
+    z-index: 1000;
+}
+
+.navbar {
+    height: 60px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+.center-section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+h2 {
+    background-color: blueviolet;
+    text-align: center;
+    color: rgb(246, 246, 246);
+    padding: 10px;
+    font-family: cursive;
+}
+  
+.title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-30%);
+    color: white;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin: 0;
+  }
+.navbar .links {
+    display: flex;
+    gap: 2rem;
+}
+
+.navbar .toggle-btn {
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: none; /* hidden by default on desktop */
+}
+
+/* Dropmenu (hidden by default) */
+.dropmenu {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 60px;
+    width: 150px;
+    background-color: rgb(240, 236, 244);
+    overflow: hidden;
+    transition: height 0.3s ease;
+    border-bottom-right-radius: 10px;
+    box-shadow: 2px 2px;
+
+}
+
+/* When open */
+.dropmenu.open {
+    display: block;
+    height: 260px;
+}
+
+/* Menu items */
+.dropmenu li {
+    padding: 5px;
+    display: flex;
+}
+.dropmenu ul {
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;       
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    font-family: sans-serif;
+}
+  
+
+.dropmenu a {
+    color: rgb(0, 0, 0); border: 1px solid black;    /* box border */
+    background-color: #ffffff;  /* light background */
+    color: rgb(87, 89, 101);               /* text color */
+    padding: 1px;              /* space inside the box */
+    margin: 0;              /* space between boxes */ 
+    width: 120px;
+    box-shadow: 2px 1px;
+    border-radius: 5px;
+    
+      
+}
+.picheader {
+    border: 10px solid white;
+    text-align: center;
+    color: black;
+    background-color: rgb(249, 240, 240);
+    box-shadow: 10px 10px 20px black;
+    padding: 10px; /* gives some space inside */
+}
+.picheader img {
+    max-width: 100%;
+    height: auto;
+}
+
+section {
+    margin: 10px;
+}
+.parcenter {
+    text-align: justify;
+}
+#basic-facts {
+    padding: 10px;
+}
+  
+#linked {
+    color: rgb(235, 19, 19);
+    font-weight: bolder;
+}
+
+.position{
+    margin-bottom: 20px;
+}
+footer {
+    margin-top: 0;
+    padding: 0;
+    background-color:  rgb(61, 13, 117);
+}
+footer p {
+    color: White;
+    padding: 10px;
+}
+.main {
+    display: flex;
+    flex: 1;
+}
+main {
+    margin-top: 100px;
+    padding-left: 10px ;
+    padding-right: 10px ;
+}
+main p {
+    font-size: x-small;
+}
+.figcap {
+    font-size: x-small;
+
+}
+
+/* Responsive (mobile view) */
+@media screen and (max-width: 768px) {
+.navbar .links {
+    display: none;
+}
+
+.navbar .toggle-btn {
+    display: block;
+}
+
+
+
+}
