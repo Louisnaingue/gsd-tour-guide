@@ -11,6 +11,7 @@ body {
     flex-direction: column;     /* stack header, main, footer */
 }
 header {
+    background-color: rgb(61, 13, 117);
     text-align: center;
     padding: 0;
     margin: 0;
