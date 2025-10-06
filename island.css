@@ -482,7 +482,13 @@ p {
     
       
 }
-
+.scored {
+    font-family: 'Times New Roman', Times, serif; /* or any font you like */
+    font-size: medium;               /* adjust size */
+    color: #f3f8fc;                /* text color */
+    text-align: center;            /* center the text */
+    margin: 10px 0;                /* spacing between lines */
+}
 /*Responsive (mobile view) */
 @media screen and (max-width: 768px) {
 .navbar .links {
