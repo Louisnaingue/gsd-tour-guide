@@ -40,7 +40,7 @@
         </header>
     </div>
     <main>
-        <div class="score-title">S A M O A</div>
+        <div class="score-title">R A P A N U I</div>
         <div class="score-board">
             <h4 id="attempt-box">Questions Left:</h4>
             <h4 id="score-box">Score:0/10</h4>
@@ -60,147 +60,160 @@
             return array;
         }
 
-        const questions = shuffleArray([
+        const questions = shuffleArray(
+            [
             {
-                question: "What word do Samoans use to greet others?",
-                options: ["Malo", "Talofa", "Aloha", "Kia Ora"],
-                answer: "Talofa"
+                question: "What is the greeting word in Rapa Nui?",
+                options: ["Talofa", "Ia Orana", "Aloha", "Iorana"],
+                answer: "Iorana"
             },
             {
-                question: "Why is Samoa called 'The Heart of Polynesia'?",
-                options: [
-                "It has the largest population in Polynesia",
-                "It was the first Polynesian country discovered",
-                "It is located in the center of the Polynesian triangle",
-                "It was the birthplace of Polynesian culture"
-                ],
-                answer: "It is located in the center of the Polynesian triangle"
+                question: "Rapa Nui is also known as what in English?",
+                options: ["Paradise Island", "Easter Island", "Stone Island", "Sacred Island"],
+                answer: "Easter Island"
             },
             {
-                question: "How many Samoas are there geographically?",
-                options: ["One", "Three", "Two", "Four"],
-                answer: "Two"
+                question: "Who led the Polynesians to discover Rapa Nui around 400 AD?",
+                options: ["Hotu Matua", "Kupe", "Maui", "Abel Tasman"],
+                answer: "Hotu Matua"
             },
             {
-                question: "Which islands make up independent Samoa?",
-                options: ["Savai’i and Upolu", "Tutuila and Aunu’u", "Tahiti and Bora Bora", "Fiji and Tonga"],
-                answer: "Savai’i and Upolu"
+                question: "What are the famous stone statues on Rapa Nui called?",
+                options: ["Tikis", "Moai", "Tapa", "Heiau"],
+                answer: "Moai"
             },
             {
-                question: "Which islands belong to American Samoa?",
-                options: ["Savai’i and Upolu", "Tutuila and the eastern islands", "Tonga and Niue", "Palau and Yap"],
-                answer: "Tutuila and the eastern islands"
+                question: "Rapa Nui covers about how many square miles of land?",
+                options: ["45", "67", "100", "120"],
+                answer: "67"
             },
             {
-                question: "Who discovered Samoa in 1722?",
-                options: ["Captain Cook", "Ferdinand Magellan", "Jacob Roggeveen", "William Bligh"],
+                question: "What is the approximate population of Rapa Nui today?",
+                options: ["1,000", "3,000", "5,000", "10,000"],
+                answer: "3,000"
+            },
+            {
+                question: "What material were most moai statues carved from?",
+                options: ["Coral", "Scoria (volcanic ash)", "Granite", "Basalt"],
+                answer: "Scoria (volcanic ash)"
+            },
+            {
+                question: "Where were the moai statues primarily carved?",
+                options: ["Rano Raraku quarry", "Ahu Nau Nau", "Orongo Crater", "Hare Vaka"],
+                answer: "Rano Raraku quarry"
+            },
+            {
+                question: "What does the word 'Ahu' mean?",
+                options: ["Chief", "Burial Platform", "Sacred Drum", "Volcano"],
+                answer: "Burial Platform"
+            },
+            {
+                question: "The large red stone on top of some moai represents what?",
+                options: ["A hat", "The statue’s hair", "The sun", "Royal blood"],
+                answer: "The statue’s hair"
+            },
+            {
+                question: "What is the white coral used in the moai statues for?",
+                options: ["Decoration", "The eyes", "Jewelry", "Wall carvings"],
+                answer: "The eyes"
+            },
+            {
+                question: "Who discovered Rapa Nui on Easter Sunday in 1722?",
+                options: ["Captain Cook", "Abel Tasman", "Jacob Roggeveen", "Magellan"],
                 answer: "Jacob Roggeveen"
             },
             {
-                question: "Western Samoa was once ruled by which country before World War I?",
-                options: ["France", "Germany", "United States", "New Zealand"],
-                answer: "Germany"
+                question: "Which country annexed Rapa Nui in 1852?",
+                options: ["Spain", "France", "Chile", "Peru"],
+                answer: "Chile"
             },
             {
-                question: "Which country administered Western Samoa after World War I?",
-                options: ["Germany", "New Zealand", "France", "The United Kingdom"],
-                answer: "New Zealand"
+                question: "What is the name of the ceremonial village where Birdman competitions took place?",
+                options: ["Anakena", "Orongo", "Rano Raraku", "Tangata Manu"],
+                answer: "Orongo"
             },
             {
-                question: "When did Western Samoa become independent?",
-                options: ["1945", "1950", "1962", "1972"],
-                answer: "1962"
+                question: "The Birdman competition was dedicated to which god?",
+                options: ["Makemake", "Tangaroa", "Lono", "Tane"],
+                answer: "Makemake"
             },
             {
-                question: "What is the central open area of a Samoan village called?",
-                options: ["Fale", "Malae", "Ava", "Tanoa"],
-                answer: "Malae"
+                question: "What did the Birdman competitors retrieve from the sea?",
+                options: ["A golden shell", "A sooty tern egg", "A coral stone", "A feather crown"],
+                answer: "A sooty tern egg"
             },
             {
-                question: "Why do Samoan houses have round roofs and no walls?",
-                options: [
-                "For decoration",
-                "To hold more people",
-                "To keep the interior cool and breezy",
-                "To make construction cheaper"
-                ],
-                answer: "To keep the interior cool and breezy"
+                question: "What does the term 'Hare Vaka' mean?",
+                options: ["Fishing hut", "Boat house", "Dance house", "Chief’s hut"],
+                answer: "Boat house"
             },
             {
-                question: "What are woven coconut leaf blinds called in Samoa?",
-                options: ["Fala", "Ie toga", "Pola", "Ava"],
-                answer: "Pola"
+                question: "What is a 'Mana Vai'?",
+                options: ["Cooking pit", "Protected garden pit", "Boat dock", "Stone altar"],
+                answer: "Protected garden pit"
             },
             {
-                question: "In Samoa, who is traditionally responsible for cooking in the tunoa or umu kuka?",
-                options: ["Women", "Children", "Men", "Chiefs"],
-                answer: "Men"
+                question: "What foods were grown in a Mana Vai?",
+                options: ["Rice and bread", "Taro, banana, sugar cane, and sweet potato", "Corn and coconut", "Fish and seaweed"],
+                answer: "Taro, banana, sugar cane, and sweet potato"
             },
             {
-                question: "What is the Samoan term for 'The Samoan Way of Life'?",
-                options: ["Fale Samoa", "Ava Samoa", "Fa’a Samoa", "Malo Samoa"],
-                answer: "Fa’a Samoa"
+                question: "What is 'Hare Ma‘ea'?",
+                options: ["Stone house for ceremonies", "Fishing canoe", "Chief’s tomb", "Storage house"],
+                answer: "Stone house for ceremonies"
             },
             {
-                question: "What is the white liquid made by squeezing grated coconut?",
-                options: ["Coconut water", "Coconut cream", "Coconut milk", "Coconut oil"],
-                answer: "Coconut milk"
+                question: "What was the Birdman title called in Rapa Nui?",
+                options: ["Tangata Manu", "Ari‘i Nui", "Ali‘i", "Tahu‘a"],
+                answer: "Tangata Manu"
             },
             {
-                question: "What is the Samoan word for a family dwelling house?",
-                options: ["Fale Talimalo", "Fale Fono", "Fale Nonofo", "Maota Tofa"],
-                answer: "Fale Nonofo"
+                question: "How tall is the tallest unfinished moai?",
+                options: ["20 feet", "40 feet", "70 feet", "90 feet"],
+                answer: "70 feet"
             },
             {
-                question: "What is a Fale Talimalo used for?",
-                options: ["To receive and host guests", "To store tools", "To cook food", "To hold council meetings"],
-                answer: "To receive and host guests"
+                question: "What does 'Moai' mean?",
+                options: ["Statue", "Ancestor", "Spirit", "God"],
+                answer: "Statue"
             },
             {
-                question: "When not hosting guests, a Fale Talimalo can serve as what?",
-                options: ["A sleeping area", "A storage room", "A Fale Fono (meeting house)", "A kitchen"],
-                answer: "A Fale Fono (meeting house)"
+                question: "What were the statues meant to represent?",
+                options: ["Gods", "Kings and Chiefs", "Warriors", "Animals"],
+                answer: "Kings and Chiefs"
             },
             {
-                question: "What happens if a stranger claims the 'stranger’s post' during a meeting?",
-                options: [
-                "He is ignored",
-                "He must leave",
-                "The post must be surrendered to him",
-                "He becomes the chief"
-                ],
-                answer: "The post must be surrendered to him"
+                question: "What natural disaster caused many moai to fall?",
+                options: ["Earthquakes and wars", "Floods", "Volcanoes", "Hurricanes"],
+                answer: "Earthquakes and wars"
             },
             {
-                question: "What does the Kava ceremony represent in Samoa?",
-                options: ["Entertainment", "Religious worship", "Unity, peace, and loyalty among chiefs", "Competition"],
-                answer: "Unity, peace, and loyalty among chiefs"
+                question: "How did the Rapa Nui people move the moai according to legend?",
+                options: ["They rolled them on logs", "They floated them", "They made them walk", "They carried them with ropes"],
+                answer: "They made them walk"
             },
             {
-                question: "What are ie toga in Samoa?",
-                options: ["Coconut shells", "Fine ceremonial mats", "Blinds for the house", "Cooking leaves"],
-                answer: "Fine ceremonial mats"
+                question: "What is the approximate elevation of Rapa Nui?",
+                options: ["200 feet", "500 feet", "1,000 feet", "1,700 feet"],
+                answer: "1,700 feet"
             },
             {
-                question: "What does the Samoan word Matai mean?",
-                options: ["Priest", "Chief or leader", "Fisherman", "Builder"],
-                answer: "Chief or leader"
+                question: "What unique script was developed by the Rapa Nui people?",
+                options: ["Kupu Kupu", "Rongorongo", "Tatau", "Mana"],
+                answer: "Rongorongo"
             },
             {
-                question: "How high is the Chief’s House (Maota Tofa) usually raised from the ground?",
-                options: ["2–3 feet", "5–8 feet", "10–12 feet", "It is not raised"],
-                answer: "5–8 feet"
+                question: "How many moai statues were created on Rapa Nui?",
+                options: ["Around 300", "Around 600", "Almost 900", "Over 1,500"],
+                answer: "Almost 900"
             },
             {
-                question: "Who introduced tattooing to Samoa, according to legend?",
-                options: ["Missionaries", "Two Samoan brothers", "Two Fijian women, Taema and Tifaiga", "The first chiefs"],
-                answer: "Two Fijian women, Taema and Tifaiga"
-            },
-            {
-                question: "What does the To’oto’o (staff) used by chiefs symbolize?",
-                options: ["Strength and bravery", "Hospitality", "The authority to speak", "Wisdom"],
-                answer: "The authority to speak"
+                question: "The Polynesian Cultural Center’s Rapa Nui exhibit was added in what year?",
+                options: ["1990", "2000", "2003", "2010"],
+                answer: "2003"
             }
+
+
         ]);
         let quizQuestions = []; // will hold 10 questions per game
         let currentQuestion = 0;

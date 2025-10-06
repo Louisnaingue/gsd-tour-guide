@@ -40,7 +40,7 @@
         </header>
     </div>
     <main>
-        <div class="score-title">S A M O A</div>
+        <div class="score-title">F I J I</div>
         <div class="score-board">
             <h4 id="attempt-box">Questions Left:</h4>
             <h4 id="score-box">Score:0/10</h4>
@@ -60,147 +60,160 @@
             return array;
         }
 
-        const questions = shuffleArray([
+        const questions = shuffleArray(
+            [
             {
-                question: "What word do Samoans use to greet others?",
-                options: ["Malo", "Talofa", "Aloha", "Kia Ora"],
-                answer: "Talofa"
+                question: "What is the greeting word in Fiji?",
+                options: ["Talofa", "Aloha", "Bula Vinaka", "Kia Ora"],
+                answer: "Bula Vinaka"
             },
             {
-                question: "Why is Samoa called 'The Heart of Polynesia'?",
-                options: [
-                "It has the largest population in Polynesia",
-                "It was the first Polynesian country discovered",
-                "It is located in the center of the Polynesian triangle",
-                "It was the birthplace of Polynesian culture"
-                ],
-                answer: "It is located in the center of the Polynesian triangle"
+                question: "What does 'Bula Vinaka' mean?",
+                options: ["Hello", "Good Health or Good Life", "Welcome Friend", "Peace Be With You"],
+                answer: "Good Health or Good Life"
             },
             {
-                question: "How many Samoas are there geographically?",
-                options: ["One", "Three", "Two", "Four"],
-                answer: "Two"
+                question: "How many islands make up Fiji?",
+                options: ["Around 100", "Over 330", "About 50", "700+"],
+                answer: "Over 330"
             },
             {
-                question: "Which islands make up independent Samoa?",
-                options: ["Savai’i and Upolu", "Tutuila and Aunu’u", "Tahiti and Bora Bora", "Fiji and Tonga"],
-                answer: "Savai’i and Upolu"
+                question: "What are the two largest islands of Fiji?",
+                options: ["Vanua Levu and Viti Levu", "Tonga and Suva", "Kabara and Rarotonga", "Tahiti and Rapa Nui"],
+                answer: "Vanua Levu and Viti Levu"
             },
             {
-                question: "Which islands belong to American Samoa?",
-                options: ["Savai’i and Upolu", "Tutuila and the eastern islands", "Tonga and Niue", "Palau and Yap"],
-                answer: "Tutuila and the eastern islands"
+                question: "What is the capital city of Fiji?",
+                options: ["Apia", "Suva", "Nadi", "Pago Pago"],
+                answer: "Suva"
             },
             {
-                question: "Who discovered Samoa in 1722?",
-                options: ["Captain Cook", "Ferdinand Magellan", "Jacob Roggeveen", "William Bligh"],
-                answer: "Jacob Roggeveen"
+                question: "Fiji was a colony of which country until 1970?",
+                options: ["France", "United States", "Great Britain", "New Zealand"],
+                answer: "Great Britain"
             },
             {
-                question: "Western Samoa was once ruled by which country before World War I?",
-                options: ["France", "Germany", "United States", "New Zealand"],
-                answer: "Germany"
+                question: "Who was the first European credited with discovering Fiji?",
+                options: ["Captain Cook", "Abel Tasman", "Jacob Roggeveen", "William Bligh"],
+                answer: "Abel Tasman"
             },
             {
-                question: "Which country administered Western Samoa after World War I?",
-                options: ["Germany", "New Zealand", "France", "The United Kingdom"],
-                answer: "New Zealand"
+                question: "Fiji is known as what in the Pacific?",
+                options: ["The Heart of Polynesia", "The Crossroads of the South Pacific", "The Land of Paradise", "The Island of Chiefs"],
+                answer: "The Crossroads of the South Pacific"
             },
             {
-                question: "When did Western Samoa become independent?",
-                options: ["1945", "1950", "1962", "1972"],
-                answer: "1962"
+                question: "What percentage of Fiji’s population lives on the two main islands?",
+                options: ["60%", "75%", "87%", "95%"],
+                answer: "87%"
             },
             {
-                question: "What is the central open area of a Samoan village called?",
-                options: ["Fale", "Malae", "Ava", "Tanoa"],
-                answer: "Malae"
+                question: "About 40% of Fiji’s population descends from which group?",
+                options: ["Missionaries", "Indian laborers", "Chinese immigrants", "Maori settlers"],
+                answer: "Indian laborers"
             },
             {
-                question: "Why do Samoan houses have round roofs and no walls?",
-                options: [
-                "For decoration",
-                "To hold more people",
-                "To keep the interior cool and breezy",
-                "To make construction cheaper"
-                ],
-                answer: "To keep the interior cool and breezy"
+                question: "What is the term 'bure' used for in Fiji?",
+                options: ["Temple", "House or structure", "Canoe", "Garden"],
+                answer: "House or structure"
             },
             {
-                question: "What are woven coconut leaf blinds called in Samoa?",
-                options: ["Fala", "Ie toga", "Pola", "Ava"],
-                answer: "Pola"
+                question: "What is a 'vale' in Fiji?",
+                options: ["A family home used daily", "A meeting hall", "A guesthouse", "A food hut"],
+                answer: "A family home used daily"
             },
             {
-                question: "In Samoa, who is traditionally responsible for cooking in the tunoa or umu kuka?",
-                options: ["Women", "Children", "Men", "Chiefs"],
-                answer: "Men"
+                question: "Why are Fijian roofs built high and steep?",
+                options: ["To resist strong winds", "For better air circulation and rain runoff", "To store crops", "To keep animals out"],
+                answer: "For better air circulation and rain runoff"
             },
             {
-                question: "What is the Samoan term for 'The Samoan Way of Life'?",
-                options: ["Fale Samoa", "Ava Samoa", "Fa’a Samoa", "Malo Samoa"],
-                answer: "Fa’a Samoa"
+                question: "What is the traditional Fijian chief’s house called?",
+                options: ["Vale Levu", "Bure Kalou", "Vale Ni Bose", "Bure Ni Kuro"],
+                answer: "Vale Levu"
             },
             {
-                question: "What is the white liquid made by squeezing grated coconut?",
-                options: ["Coconut water", "Coconut cream", "Coconut milk", "Coconut oil"],
-                answer: "Coconut milk"
+                question: "What is hung on the chief’s house to show status?",
+                options: ["Cowry shells", "Coconut leaves", "Tapa cloth", "Feathers"],
+                answer: "Cowry shells"
             },
             {
-                question: "What is the Samoan word for a family dwelling house?",
-                options: ["Fale Talimalo", "Fale Fono", "Fale Nonofo", "Maota Tofa"],
-                answer: "Fale Nonofo"
+                question: "Which door is reserved only for the chief to enter?",
+                options: ["East", "South", "West", "North"],
+                answer: "West"
             },
             {
-                question: "What is a Fale Talimalo used for?",
-                options: ["To receive and host guests", "To store tools", "To cook food", "To hold council meetings"],
-                answer: "To receive and host guests"
+                question: "What material were Fijian pillows made of?",
+                options: ["Feathers", "Bamboo", "Mats", "Clay"],
+                answer: "Bamboo"
             },
             {
-                question: "When not hosting guests, a Fale Talimalo can serve as what?",
-                options: ["A sleeping area", "A storage room", "A Fale Fono (meeting house)", "A kitchen"],
-                answer: "A Fale Fono (meeting house)"
+                question: "What is the purpose of the Vale Ni Bose?",
+                options: ["Meeting house for chiefs", "Temple for prayers", "Weaving center", "Family home"],
+                answer: "Meeting house for chiefs"
             },
             {
-                question: "What happens if a stranger claims the 'stranger’s post' during a meeting?",
-                options: [
-                "He is ignored",
-                "He must leave",
-                "The post must be surrendered to him",
-                "He becomes the chief"
-                ],
-                answer: "The post must be surrendered to him"
+                question: "What ceremonial drink is served during meetings?",
+                options: ["Ava", "Lovo", "Yaqona or Kava", "Coconut Milk"],
+                answer: "Yaqona or Kava"
             },
             {
-                question: "What does the Kava ceremony represent in Samoa?",
-                options: ["Entertainment", "Religious worship", "Unity, peace, and loyalty among chiefs", "Competition"],
-                answer: "Unity, peace, and loyalty among chiefs"
+                question: "What plant is used to make the kava drink?",
+                options: ["Coconut", "Pepper plant root", "Banana leaf", "Breadfruit root"],
+                answer: "Pepper plant root"
             },
             {
-                question: "What are ie toga in Samoa?",
-                options: ["Coconut shells", "Fine ceremonial mats", "Blinds for the house", "Cooking leaves"],
-                answer: "Fine ceremonial mats"
+                question: "What musical instrument is used for long-distance communication?",
+                options: ["Drum or Lali", "Conch shell", "Bamboo flute", "Wooden horn"],
+                answer: "Drum or Lali"
             },
             {
-                question: "What does the Samoan word Matai mean?",
-                options: ["Priest", "Chief or leader", "Fisherman", "Builder"],
-                answer: "Chief or leader"
+                question: "What is a Derua?",
+                options: ["Bamboo percussion instrument", "Type of canoe", "Traditional dance", "Cooking pit"],
+                answer: "Bamboo percussion instrument"
             },
             {
-                question: "How high is the Chief’s House (Maota Tofa) usually raised from the ground?",
-                options: ["2–3 feet", "5–8 feet", "10–12 feet", "It is not raised"],
-                answer: "5–8 feet"
+                question: "What is the Fijian underground oven called?",
+                options: ["Imu", "Lovo", "Umu", "Kuka"],
+                answer: "Lovo"
             },
             {
-                question: "Who introduced tattooing to Samoa, according to legend?",
-                options: ["Missionaries", "Two Samoan brothers", "Two Fijian women, Taema and Tifaiga", "The first chiefs"],
-                answer: "Two Fijian women, Taema and Tifaiga"
+                question: "What is the Bure Kalou?",
+                options: ["Spirit house or temple", "Chief’s home", "Guest house", "Storage hut"],
+                answer: "Spirit house or temple"
             },
             {
-                question: "What does the To’oto’o (staff) used by chiefs symbolize?",
-                options: ["Strength and bravery", "Hospitality", "The authority to speak", "Wisdom"],
-                answer: "The authority to speak"
+                question: "What is the priest inside the Bure Kalou called?",
+                options: ["Ali’i", "Bete", "Tufuga", "Tulafale"],
+                answer: "Bete"
+            },
+            {
+                question: "What is the dried coconut flesh called?",
+                options: ["Masi", "Copra", "Fala", "Pola"],
+                answer: "Copra"
+            },
+            {
+                question: "What is the traditional Fijian canoe called?",
+                options: ["Camakau", "Waka Taua", "Takia", "Drua"],
+                answer: "Camakau"
+            },
+            {
+                question: "What makes the Camakau unique?",
+                options: ["It can reverse direction without turning", "It can hold 100 people", "It has a carved sail", "It floats without an outrigger"],
+                answer: "It can reverse direction without turning"
+            },
+            {
+                question: "How many classes of canoes are found in Fiji?",
+                options: ["Two", "Three", "Four", "Five"],
+                answer: "Four"
+            },
+            {
+                question: "What were Fijian war clubs traditionally used for?",
+                options: ["Fishing", "Close combat fighting", "Drumming", "Cooking"],
+                answer: "Close combat fighting"
             }
+
+
         ]);
         let quizQuestions = []; // will hold 10 questions per game
         let currentQuestion = 0;

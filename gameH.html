@@ -40,7 +40,7 @@
         </header>
     </div>
     <main>
-        <div class="score-title">S A M O A</div>
+        <div class="score-title">H A W A I I</div>
         <div class="score-board">
             <h4 id="attempt-box">Questions Left:</h4>
             <h4 id="score-box">Score:0/10</h4>
@@ -60,147 +60,160 @@
             return array;
         }
 
-        const questions = shuffleArray([
+        const questions = shuffleArray(
+            [
             {
-                question: "What word do Samoans use to greet others?",
-                options: ["Malo", "Talofa", "Aloha", "Kia Ora"],
-                answer: "Talofa"
+                question: "What is the Hawaiian word for hello and goodbye?",
+                options: ["Talofa", "Aloha", "Bula", "Kia Ora"],
+                answer: "Aloha"
             },
             {
-                question: "Why is Samoa called 'The Heart of Polynesia'?",
-                options: [
-                "It has the largest population in Polynesia",
-                "It was the first Polynesian country discovered",
-                "It is located in the center of the Polynesian triangle",
-                "It was the birthplace of Polynesian culture"
-                ],
-                answer: "It is located in the center of the Polynesian triangle"
+                question: "What deeper meaning does 'Aloha' carry?",
+                options: ["Love, peace, compassion, and affection", "Friendship only", "Farewell", "Respect for elders"],
+                answer: "Love, peace, compassion, and affection"
             },
             {
-                question: "How many Samoas are there geographically?",
-                options: ["One", "Three", "Two", "Four"],
-                answer: "Two"
+                question: "How many major islands make up the Hawaiian chain?",
+                options: ["4", "6", "8", "10"],
+                answer: "8"
             },
             {
-                question: "Which islands make up independent Samoa?",
-                options: ["Savai’i and Upolu", "Tutuila and Aunu’u", "Tahiti and Bora Bora", "Fiji and Tonga"],
-                answer: "Savai’i and Upolu"
+                question: "What does 'Hawai‘i' mean in English?",
+                options: ["The Big Island", "Home of the Gods", "The Homeland", "Island of Flowers"],
+                answer: "The Homeland"
             },
             {
-                question: "Which islands belong to American Samoa?",
-                options: ["Savai’i and Upolu", "Tutuila and the eastern islands", "Tonga and Niue", "Palau and Yap"],
-                answer: "Tutuila and the eastern islands"
+                question: "Who was the first king to unite all Hawaiian Islands?",
+                options: ["King Kamehameha I", "King Kalākaua", "Queen Liliʻuokalani", "Prince Kūhiō"],
+                answer: "King Kamehameha I"
             },
             {
-                question: "Who discovered Samoa in 1722?",
-                options: ["Captain Cook", "Ferdinand Magellan", "Jacob Roggeveen", "William Bligh"],
-                answer: "Jacob Roggeveen"
+                question: "What is the Hawaiian word for family?",
+                options: ["Ohana", "Aiga", "Whānau", "Matavuvale"],
+                answer: "Ohana"
             },
             {
-                question: "Western Samoa was once ruled by which country before World War I?",
-                options: ["France", "Germany", "United States", "New Zealand"],
-                answer: "Germany"
+                question: "What is the traditional Hawaiian feast called?",
+                options: ["Luau", "Imu", "Hula", "Kava"],
+                answer: "Luau"
             },
             {
-                question: "Which country administered Western Samoa after World War I?",
-                options: ["Germany", "New Zealand", "France", "The United Kingdom"],
-                answer: "New Zealand"
+                question: "What is the underground oven used to cook food called?",
+                options: ["Umu", "Lovo", "Imu", "Fale"],
+                answer: "Imu"
             },
             {
-                question: "When did Western Samoa become independent?",
-                options: ["1945", "1950", "1962", "1972"],
-                answer: "1962"
+                question: "What is the traditional Hawaiian dance that tells a story?",
+                options: ["Haka", "Siva", "Hula", "Meke"],
+                answer: "Hula"
             },
             {
-                question: "What is the central open area of a Samoan village called?",
-                options: ["Fale", "Malae", "Ava", "Tanoa"],
-                answer: "Malae"
+                question: "What instruments often accompany the hula?",
+                options: ["Ipu drum and ukulele", "Guitar and flute", "Coconut drum and whistle", "Pahu and conch shell"],
+                answer: "Ipu drum and ukulele"
             },
             {
-                question: "Why do Samoan houses have round roofs and no walls?",
-                options: [
-                "For decoration",
-                "To hold more people",
-                "To keep the interior cool and breezy",
-                "To make construction cheaper"
-                ],
-                answer: "To keep the interior cool and breezy"
+                question: "What is the traditional Hawaiian house called?",
+                options: ["Hale", "Fale", "Bure", "Whare"],
+                answer: "Hale"
             },
             {
-                question: "What are woven coconut leaf blinds called in Samoa?",
-                options: ["Fala", "Ie toga", "Pola", "Ava"],
-                answer: "Pola"
+                question: "What are traditional Hawaiian houses made from?",
+                options: ["Lava rock and coral", "Grass and wooden poles", "Coconut trunks", "Stone and clay"],
+                answer: "Grass and wooden poles"
             },
             {
-                question: "In Samoa, who is traditionally responsible for cooking in the tunoa or umu kuka?",
-                options: ["Women", "Children", "Men", "Chiefs"],
-                answer: "Men"
+                question: "What is the Hawaiian word for land or earth?",
+                options: ["Aina", "Kai", "Lani", "Nalu"],
+                answer: "Aina"
             },
             {
-                question: "What is the Samoan term for 'The Samoan Way of Life'?",
-                options: ["Fale Samoa", "Ava Samoa", "Fa’a Samoa", "Malo Samoa"],
-                answer: "Fa’a Samoa"
+                question: "What does 'Malama Aina' mean?",
+                options: ["Take care of the land", "Respect the chief", "Cherish your family", "Be brave in war"],
+                answer: "Take care of the land"
             },
             {
-                question: "What is the white liquid made by squeezing grated coconut?",
-                options: ["Coconut water", "Coconut cream", "Coconut milk", "Coconut oil"],
-                answer: "Coconut milk"
+                question: "What was the main food prepared in an Imu?",
+                options: ["Kalua pig", "Taro leaves", "Bananas", "Seafood stew"],
+                answer: "Kalua pig"
             },
             {
-                question: "What is the Samoan word for a family dwelling house?",
-                options: ["Fale Talimalo", "Fale Fono", "Fale Nonofo", "Maota Tofa"],
-                answer: "Fale Nonofo"
+                question: "What is poi made from?",
+                options: ["Taro root", "Coconut", "Sweet potato", "Banana"],
+                answer: "Taro root"
             },
             {
-                question: "What is a Fale Talimalo used for?",
-                options: ["To receive and host guests", "To store tools", "To cook food", "To hold council meetings"],
-                answer: "To receive and host guests"
+                question: "What is the Hawaiian word for the taro plant?",
+                options: ["Kalo", "Ulu", "Niu", "Mai‘a"],
+                answer: "Kalo"
             },
             {
-                question: "When not hosting guests, a Fale Talimalo can serve as what?",
-                options: ["A sleeping area", "A storage room", "A Fale Fono (meeting house)", "A kitchen"],
-                answer: "A Fale Fono (meeting house)"
+                question: "What is the spiritual meaning of the taro plant in Hawaiian culture?",
+                options: ["It represents the first-born ancestor", "It symbolizes unity", "It brings rain", "It represents wealth"],
+                answer: "It represents the first-born ancestor"
             },
             {
-                question: "What happens if a stranger claims the 'stranger’s post' during a meeting?",
-                options: [
-                "He is ignored",
-                "He must leave",
-                "The post must be surrendered to him",
-                "He becomes the chief"
-                ],
-                answer: "The post must be surrendered to him"
+                question: "What does 'Kapu' mean in traditional Hawaiian culture?",
+                options: ["Sacred or forbidden", "Free", "Peaceful", "Strong"],
+                answer: "Sacred or forbidden"
             },
             {
-                question: "What does the Kava ceremony represent in Samoa?",
-                options: ["Entertainment", "Religious worship", "Unity, peace, and loyalty among chiefs", "Competition"],
-                answer: "Unity, peace, and loyalty among chiefs"
+                question: "What is the Hawaiian word for ocean?",
+                options: ["Kai", "Aina", "Malu", "Lani"],
+                answer: "Kai"
             },
             {
-                question: "What are ie toga in Samoa?",
-                options: ["Coconut shells", "Fine ceremonial mats", "Blinds for the house", "Cooking leaves"],
-                answer: "Fine ceremonial mats"
+                question: "What is the Hawaiian word for heaven or sky?",
+                options: ["Lani", "Kai", "Malu", "Kuleana"],
+                answer: "Lani"
             },
             {
-                question: "What does the Samoan word Matai mean?",
-                options: ["Priest", "Chief or leader", "Fisherman", "Builder"],
-                answer: "Chief or leader"
+                question: "What is the traditional Hawaiian canoe called?",
+                options: ["Wa‘a", "Camakau", "Waka", "Takia"],
+                answer: "Wa‘a"
             },
             {
-                question: "How high is the Chief’s House (Maota Tofa) usually raised from the ground?",
-                options: ["2–3 feet", "5–8 feet", "10–12 feet", "It is not raised"],
-                answer: "5–8 feet"
+                question: "What does 'Kuleana' mean?",
+                options: ["Responsibility or duty", "Family", "Respect", "Peace"],
+                answer: "Responsibility or duty"
             },
             {
-                question: "Who introduced tattooing to Samoa, according to legend?",
-                options: ["Missionaries", "Two Samoan brothers", "Two Fijian women, Taema and Tifaiga", "The first chiefs"],
-                answer: "Two Fijian women, Taema and Tifaiga"
+                question: "What is the Hawaiian concept of harmony and righteousness?",
+                options: ["Pono", "Mana", "Ohana", "Aloha"],
+                answer: "Pono"
             },
             {
-                question: "What does the To’oto’o (staff) used by chiefs symbolize?",
-                options: ["Strength and bravery", "Hospitality", "The authority to speak", "Wisdom"],
-                answer: "The authority to speak"
+                question: "What is the term for spiritual power or divine energy in Hawaiian belief?",
+                options: ["Mana", "Aloha", "Pono", "Kapu"],
+                answer: "Mana"
+            },
+            {
+                question: "What are leis traditionally made of?",
+                options: ["Flowers, shells, seeds, or leaves", "Feathers only", "Rocks and wood", "Coral and shells"],
+                answer: "Flowers, shells, seeds, or leaves"
+            },
+            {
+                question: "What is the meaning of giving a lei?",
+                options: ["A gesture of love, welcome, or farewell", "A sign of victory", "A religious offering", "A trade symbol"],
+                answer: "A gesture of love, welcome, or farewell"
+            },
+            {
+                question: "What musical instrument originated in Hawai‘i?",
+                options: ["Ukulele", "Drum", "Conch shell", "Bamboo flute"],
+                answer: "Ukulele"
+            },
+            {
+                question: "What does 'Hula Kahiko' refer to?",
+                options: ["Ancient style of hula with chants and drums", "Modern hula with music", "Hula for ceremonies only", "Hula for tourists"],
+                answer: "Ancient style of hula with chants and drums"
+            },
+            {
+                question: "What is the newer, more modern hula style called?",
+                options: ["Hula ‘Auana", "Hula Kahiko", "Hula Kai", "Hula Mana"],
+                answer: "Hula ‘Auana"
             }
+
+
         ]);
         let quizQuestions = []; // will hold 10 questions per game
         let currentQuestion = 0;

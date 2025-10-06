@@ -40,7 +40,7 @@
         </header>
     </div>
     <main>
-        <div class="score-title">S A M O A</div>
+        <div class="score-title">T A H I T I</div>
         <div class="score-board">
             <h4 id="attempt-box">Questions Left:</h4>
             <h4 id="score-box">Score:0/10</h4>
@@ -60,147 +60,160 @@
             return array;
         }
 
-        const questions = shuffleArray([
+        const questions = shuffleArray(
+            [
             {
-                question: "What word do Samoans use to greet others?",
-                options: ["Malo", "Talofa", "Aloha", "Kia Ora"],
-                answer: "Talofa"
+                question: "What is the greeting word in Tahiti?",
+                options: ["Aloha", "Talofa", "Ia Orana", "Bula Vinaka"],
+                answer: "Ia Orana"
             },
             {
-                question: "Why is Samoa called 'The Heart of Polynesia'?",
-                options: [
-                "It has the largest population in Polynesia",
-                "It was the first Polynesian country discovered",
-                "It is located in the center of the Polynesian triangle",
-                "It was the birthplace of Polynesian culture"
-                ],
-                answer: "It is located in the center of the Polynesian triangle"
+                question: "What does 'Ia Orana' mean?",
+                options: ["Hello or may you live long", "Peace be with you", "Good luck", "Thank you"],
+                answer: "Hello or may you live long"
             },
             {
-                question: "How many Samoas are there geographically?",
-                options: ["One", "Three", "Two", "Four"],
-                answer: "Two"
+                question: "What is the Tahitian word for goodbye?",
+                options: ["Mauruuru", "Aroha", "Nana", "Taloha"],
+                answer: "Nana"
             },
             {
-                question: "Which islands make up independent Samoa?",
-                options: ["Savai’i and Upolu", "Tutuila and Aunu’u", "Tahiti and Bora Bora", "Fiji and Tonga"],
-                answer: "Savai’i and Upolu"
+                question: "What is the meaning of 'Mauruuru'?",
+                options: ["Love", "Thank you", "Farewell", "Peace"],
+                answer: "Thank you"
             },
             {
-                question: "Which islands belong to American Samoa?",
-                options: ["Savai’i and Upolu", "Tutuila and the eastern islands", "Tonga and Niue", "Palau and Yap"],
-                answer: "Tutuila and the eastern islands"
+                question: "What does the word 'Tahiti' mean?",
+                options: ["Rising sun", "Land of abundance", "Faraway paradise", "The homeland"],
+                answer: "Faraway paradise"
             },
             {
-                question: "Who discovered Samoa in 1722?",
-                options: ["Captain Cook", "Ferdinand Magellan", "Jacob Roggeveen", "William Bligh"],
-                answer: "Jacob Roggeveen"
+                question: "How many islands make up French Polynesia?",
+                options: ["35", "77", "118", "250"],
+                answer: "118"
             },
             {
-                question: "Western Samoa was once ruled by which country before World War I?",
-                options: ["France", "Germany", "United States", "New Zealand"],
-                answer: "Germany"
+                question: "What is the capital of Tahiti?",
+                options: ["Suva", "Apia", "Papeete", "Nuku'alofa"],
+                answer: "Papeete"
             },
             {
-                question: "Which country administered Western Samoa after World War I?",
-                options: ["Germany", "New Zealand", "France", "The United Kingdom"],
-                answer: "New Zealand"
+                question: "What is the largest island in French Polynesia?",
+                options: ["Tahiti", "Bora Bora", "Raiatea", "Moorea"],
+                answer: "Tahiti"
             },
             {
-                question: "When did Western Samoa become independent?",
-                options: ["1945", "1950", "1962", "1972"],
-                answer: "1962"
+                question: "Which European explorer first arrived in Tahiti in 1767?",
+                options: ["Captain James Cook", "Samuel Wallis", "Abel Tasman", "Magellan"],
+                answer: "Samuel Wallis"
             },
             {
-                question: "What is the central open area of a Samoan village called?",
-                options: ["Fale", "Malae", "Ava", "Tanoa"],
-                answer: "Malae"
+                question: "Which explorer visited Tahiti three times and mapped the islands?",
+                options: ["Captain James Cook", "Jacob Roggeveen", "William Bligh", "Robert Louis Stevenson"],
+                answer: "Captain James Cook"
             },
             {
-                question: "Why do Samoan houses have round roofs and no walls?",
-                options: [
-                "For decoration",
-                "To hold more people",
-                "To keep the interior cool and breezy",
-                "To make construction cheaper"
-                ],
-                answer: "To keep the interior cool and breezy"
+                question: "What is the traditional Tahitian dance called?",
+                options: ["Otea", "Siva", "Hula", "Meke"],
+                answer: "Otea"
             },
             {
-                question: "What are woven coconut leaf blinds called in Samoa?",
-                options: ["Fala", "Ie toga", "Pola", "Ava"],
-                answer: "Pola"
+                question: "What instrument provides rhythm for the Otea dance?",
+                options: ["To‘ere drum", "Ukulele", "Conch shell", "Ipu"],
+                answer: "To‘ere drum"
             },
             {
-                question: "In Samoa, who is traditionally responsible for cooking in the tunoa or umu kuka?",
-                options: ["Women", "Children", "Men", "Chiefs"],
-                answer: "Men"
+                question: "What is the slower, graceful Tahitian dance called?",
+                options: ["Aparima", "Hula", "Sasa", "Fatele"],
+                answer: "Aparima"
             },
             {
-                question: "What is the Samoan term for 'The Samoan Way of Life'?",
-                options: ["Fale Samoa", "Ava Samoa", "Fa’a Samoa", "Malo Samoa"],
-                answer: "Fa’a Samoa"
+                question: "What is the traditional Tahitian drum made of?",
+                options: ["Hollowed-out tree trunk", "Bamboo", "Coconut shell", "Stone"],
+                answer: "Hollowed-out tree trunk"
             },
             {
-                question: "What is the white liquid made by squeezing grated coconut?",
-                options: ["Coconut water", "Coconut cream", "Coconut milk", "Coconut oil"],
-                answer: "Coconut milk"
+                question: "What is the purpose of Tahitian dance?",
+                options: ["To tell stories through movement", "To celebrate warriors", "To perform rituals", "To welcome guests"],
+                answer: "To tell stories through movement"
             },
             {
-                question: "What is the Samoan word for a family dwelling house?",
-                options: ["Fale Talimalo", "Fale Fono", "Fale Nonofo", "Maota Tofa"],
-                answer: "Fale Nonofo"
+                question: "What are the skirts worn by Tahitian dancers made of?",
+                options: ["Pandanus leaves and hibiscus fibers", "Feathers", "Coconut shells", "Bark cloth"],
+                answer: "Pandanus leaves and hibiscus fibers"
             },
             {
-                question: "What is a Fale Talimalo used for?",
-                options: ["To receive and host guests", "To store tools", "To cook food", "To hold council meetings"],
-                answer: "To receive and host guests"
+                question: "What is the Tahitian word for home or house?",
+                options: ["Fare", "Hale", "Fale", "Vale"],
+                answer: "Fare"
             },
             {
-                question: "When not hosting guests, a Fale Talimalo can serve as what?",
-                options: ["A sleeping area", "A storage room", "A Fale Fono (meeting house)", "A kitchen"],
-                answer: "A Fale Fono (meeting house)"
+                question: "What are Tahitian homes traditionally made from?",
+                options: ["Bamboo and palm leaves", "Stone and coral", "Coconut wood", "Clay"],
+                answer: "Bamboo and palm leaves"
             },
             {
-                question: "What happens if a stranger claims the 'stranger’s post' during a meeting?",
-                options: [
-                "He is ignored",
-                "He must leave",
-                "The post must be surrendered to him",
-                "He becomes the chief"
-                ],
-                answer: "The post must be surrendered to him"
+                question: "What is the main food preparation method in Tahiti?",
+                options: ["Ahima‘a earth oven", "Umu", "Lovo", "Imu"],
+                answer: "Ahima‘a earth oven"
             },
             {
-                question: "What does the Kava ceremony represent in Samoa?",
-                options: ["Entertainment", "Religious worship", "Unity, peace, and loyalty among chiefs", "Competition"],
-                answer: "Unity, peace, and loyalty among chiefs"
+                question: "What is the Ahima‘a used for?",
+                options: ["Cooking food in the ground with hot stones", "Drying fish", "Baking bread", "Roasting coffee"],
+                answer: "Cooking food in the ground with hot stones"
             },
             {
-                question: "What are ie toga in Samoa?",
-                options: ["Coconut shells", "Fine ceremonial mats", "Blinds for the house", "Cooking leaves"],
-                answer: "Fine ceremonial mats"
+                question: "What is the Tahitian word for coconut?",
+                options: ["Niu", "Ha‘ari", "Kalo", "Ulu"],
+                answer: "Ha‘ari"
             },
             {
-                question: "What does the Samoan word Matai mean?",
-                options: ["Priest", "Chief or leader", "Fisherman", "Builder"],
-                answer: "Chief or leader"
+                question: "What is the staple food of Tahiti made from breadfruit called?",
+                options: ["Uru", "Poi", "Taro", "Kalo"],
+                answer: "Uru"
             },
             {
-                question: "How high is the Chief’s House (Maota Tofa) usually raised from the ground?",
-                options: ["2–3 feet", "5–8 feet", "10–12 feet", "It is not raised"],
-                answer: "5–8 feet"
+                question: "What is the traditional Tahitian canoe called?",
+                options: ["Va‘a", "Camakau", "Takia", "Waka"],
+                answer: "Va‘a"
             },
             {
-                question: "Who introduced tattooing to Samoa, according to legend?",
-                options: ["Missionaries", "Two Samoan brothers", "Two Fijian women, Taema and Tifaiga", "The first chiefs"],
-                answer: "Two Fijian women, Taema and Tifaiga"
+                question: "What are Tahitian canoes mainly used for?",
+                options: ["Fishing and racing", "War", "Tourism", "Ceremonies only"],
+                answer: "Fishing and racing"
             },
             {
-                question: "What does the To’oto’o (staff) used by chiefs symbolize?",
-                options: ["Strength and bravery", "Hospitality", "The authority to speak", "Wisdom"],
-                answer: "The authority to speak"
+                question: "What flower is considered the national flower of Tahiti?",
+                options: ["Tiare Tahiti", "Hibiscus", "Frangipani", "Orchid"],
+                answer: "Tiare Tahiti"
+            },
+            {
+                question: "What is the symbolic meaning of the Tiare Tahiti flower?",
+                options: ["Love and welcome", "Peace and purity", "Friendship and loyalty", "Family and unity"],
+                answer: "Love and welcome"
+            },
+            {
+                question: "What natural material do Tahitians use for making mats and hats?",
+                options: ["Pandanus leaves", "Banana bark", "Coconut husks", "Palm fibers"],
+                answer: "Pandanus leaves"
+            },
+            {
+                question: "What is the Tahitian word for thankfulness or gratitude?",
+                options: ["Mauruuru", "Nana", "Aroha", "Vinaka"],
+                answer: "Mauruuru"
+            },
+            {
+                question: "What is the traditional Tahitian percussion ensemble called?",
+                options: ["To‘ere orchestra", "Meke group", "Hula band", "Pahu chorus"],
+                answer: "To‘ere orchestra"
+            },
+            {
+                question: "What is the phrase that best captures the spirit of Tahiti?",
+                options: ["Ia Orana e Maeva", "Talofa Lava", "Aloha nui loa", "Bula Vinaka"],
+                answer: "Ia Orana e Maeva"
             }
+
+
         ]);
         let quizQuestions = []; // will hold 10 questions per game
         let currentQuestion = 0;

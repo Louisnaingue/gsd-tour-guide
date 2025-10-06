@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="island.css">
+  <title>Interactive Quiz</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap" rel="stylesheet">">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="head7">
+        <header>
+            <div class="navbar">
+            <div class="toggle-btn">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        <div class="center-section">
+            <p class="title1">ISLAND KNOWLEDGE</p>
+        </div>
+        <div class="dropmenu1">
+            <ul class="ulclass">
+                <li></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="gameR.html">Random</a></li>
+                <li><a href="gameA.html">Aotearoa</a></li>
+                <li><a href="gameF.html">Fiji</a></li>
+                <li><a href="gameH.html">Hawaii</a></li>
+                <li><a href="gameT.html">Tahiti</a></li>
+                <li><a href="gameTO.html">Tonga</a></li>
+                <li><a href="game.html">Samoa</a></li>
+                <li><a href="gameE.html">Rapanui</a></li>
+            </ul>
+        </div>
+        </header>
+    </div>
+    <main>
+        <div class="score-title">T O N G A</div>
+        <div class="score-board">
+            <h4 id="attempt-box">Questions Left:</h4>
+            <h4 id="score-box">Score:0/10</h4>
+        </div>
+        <div id="quiz" class="quiz-box"></div>
+    </main>
+    <footer class="game">
+        <p>&copy; 2025 by Louis Naingue</p>
+    </footer>
+    <script>
+    // Shuffle function to randomize questions
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        const questions = shuffleArray(
+        [
+        {
+            question: "What is the greeting word in Tonga?",
+            options: ["Talofa", "Aloha", "Malo e lelei", "Bula Vinaka"],
+            answer: "Malo e lelei"
+        },
+        {
+            question: "What does 'Malo e lelei' mean?",
+            options: ["Hello or thank you for being well", "Peace be with you", "Good morning", "How are you?"],
+            answer: "Hello or thank you for being well"
+        },
+        {
+            question: "What is the Tongan word for goodbye?",
+            options: ["Alu a", "Tofa soifua", "Nana", "Aroha nui"],
+            answer: "Alu a"
+        },
+        {
+            question: "What does 'Fakamolemole' mean?",
+            options: ["Excuse me or sorry", "Please come in", "Welcome", "Thank you"],
+            answer: "Excuse me or sorry"
+        },
+        {
+            question: "How many islands make up the Kingdom of Tonga?",
+            options: ["Over 170", "Over 100", "Over 200", "Over 75"],
+            answer: "Over 170"
+        },
+        {
+            question: "How many of Tonga’s islands are inhabited?",
+            options: ["17", "36", "45", "70"],
+            answer: "36"
+        },
+        {
+            question: "What is the capital of Tonga?",
+            options: ["Nukuʻalofa", "Apia", "Suva", "Papeete"],
+            answer: "Nukuʻalofa"
+        },
+        {
+            question: "What does 'Nukuʻalofa' mean?",
+            options: ["Home of Love", "Heart of Peace", "Land of Kings", "Village by the Sea"],
+            answer: "Home of Love"
+        },
+        {
+            question: "What is Tonga often called?",
+            options: ["The Friendly Islands", "The Island of Chiefs", "The Heart of Polynesia", "The Crossroads of the Pacific"],
+            answer: "The Friendly Islands"
+        },
+        {
+            question: "Who gave Tonga the name 'Friendly Islands'?",
+            options: ["Captain James Cook", "Jacob Roggeveen", "Samuel Wallis", "Captain Bligh"],
+            answer: "Captain James Cook"
+        },
+        {
+            question: "In what year did Tonga become a constitutional monarchy?",
+            options: ["1875", "1900", "1962", "1890"],
+            answer: "1875"
+        },
+        {
+            question: "Who was the first king of modern Tonga?",
+            options: ["King George Tupou I", "King Taufa‘ahau", "King Kamehameha I", "King Kalākaua"],
+            answer: "King George Tupou I"
+        },
+        {
+            question: "What is the Tongan word for a home or house?",
+            options: ["Fale", "Fare", "Hale", "Vale"],
+            answer: "Fale"
+        },
+        {
+            question: "What are traditional Tongan houses made of?",
+            options: ["Coconut and pandanus leaves", "Stone and coral", "Clay and bamboo", "Wood and palm fibers"],
+            answer: "Coconut and pandanus leaves"
+        },
+        {
+            question: "What is the Tongan word for family?",
+            options: ["Fāmili", "Aiga", "Ohana", "Whānau"],
+            answer: "Fāmili"
+        },
+        {
+            question: "What is the Tongan word for chief?",
+            options: ["Hou‘eiki", "Ali‘i", "Matai", "Ariki"],
+            answer: "Hou‘eiki"
+        },
+        {
+            question: "What is the Tongan word for a ceremonial speechmaker?",
+            options: ["Matapule", "Tulafale", "Tufuga", "Ali‘i"],
+            answer: "Matapule"
+        },
+        {
+            question: "What is the Tongan word for food cooked in an underground oven?",
+            options: ["Umu", "Imu", "Lovo", "Ahima‘a"],
+            answer: "Umu"
+        },
+        {
+            question: "What is the most important crop in Tonga?",
+            options: ["Taro", "Yam", "Breadfruit", "Banana"],
+            answer: "Yam"
+        },
+        {
+            question: "What do Tongans use to make tapa cloth?",
+            options: ["Mulberry bark", "Coconut leaves", "Palm fibers", "Banana trunk"],
+            answer: "Mulberry bark"
+        },
+        {
+            question: "What is tapa cloth called in Tonga?",
+            options: ["Ngatu", "Masi", "Tapa", "Siapo"],
+            answer: "Ngatu"
+        },
+        {
+            question: "What natural dye is used to decorate tapa cloth?",
+            options: ["Brown from candlenut soot", "Red from clay", "Black from banana leaf", "Yellow from turmeric"],
+            answer: "Brown from candlenut soot"
+        },
+        {
+            question: "What is the Tongan kava ceremony called?",
+            options: ["Taumafa kava", "Ava ceremony", "Yaqona", "Kava nui"],
+            answer: "Taumafa kava"
+        },
+        {
+            question: "What does kava represent in Tonga?",
+            options: ["Respect, unity, and peace", "Joy and laughter", "Family and growth", "Strength and bravery"],
+            answer: "Respect, unity, and peace"
+        },
+        {
+            question: "What musical instrument is Tonga famous for at the PCC?",
+            options: ["Drums and log slit drums", "Ukulele", "Flute", "Bamboo nose flute"],
+            answer: "Drums and log slit drums"
+        },
+        {
+            question: "What are the wooden drums used in Tonga called?",
+            options: ["Lali", "Nafa", "To‘ere", "Pahu"],
+            answer: "Lali"
+        },
+        {
+            question: "What are the Tongans best known for performing at the PCC?",
+            options: ["Energetic drum show", "Canoe race", "Weaving dance", "Tattooing ceremony"],
+            answer: "Energetic drum show"
+        },
+        {
+            question: "What is the Tongan word for feast or celebration?",
+            options: ["Fakalolo", "Kai pola", "‘Aho‘aho", "Fakataha"],
+            answer: "Kai pola"
+        },
+        {
+            question: "What is the phrase Tongans use to express deep respect and humility?",
+            options: ["Faka‘apa‘apa", "Pono", "Fa‘aaloalo", "Mana"],
+            answer: "Faka‘apa‘apa"
+        },
+        {
+            question: "What is Tonga’s national motto often summarized as?",
+            options: ["God and Tonga are my inheritance", "Peace, Unity, Prosperity", "Aloha Ke Akua", "One Heart, One Island"],
+            answer: "God and Tonga are my inheritance"
+        }
+
+
+        ]);
+        let quizQuestions = []; // will hold 10 questions per game
+        let currentQuestion = 0;
+        let score = 0;
+
+        const quizContainer = document.getElementById("quiz");
+        const scoreBox = document.getElementById("score-box");
+        const attemptBox = document.getElementById("attempt-box");
+
+        function startQuiz() {
+            // Pick 10 random questions
+            const shuffledQuestions = shuffleArray(questions);
+            quizQuestions = shuffledQuestions.slice(0, 10);
+
+            // Reset score and question index
+            currentQuestion = 0;
+            score = 0;
+
+            scoreBox.textContent = `Score: 0/${quizQuestions.length}`;
+            attemptBox.textContent = `Questions Left: ${quizQuestions.length}`;
+
+            // Show first question
+            showQuestion(currentQuestion);
+        }
+
+        function showQuestion(index) {
+            const q = quizQuestions[index];
+            quizContainer.innerHTML = `
+                <div class="question">${q.question}</div>
+                ${q.options.map(opt => `
+                    <div class="opt" onclick="revealAnswer(this, '${opt}', '${q.answer}')">${opt}</div>
+                `).join("")} 
+            `;
+        }
+
+        function revealAnswer(element, userAnswer, correctAnswer) {
+            const allOptions = document.querySelectorAll(".opt");
+            allOptions.forEach(opt => opt.onclick = null);
+
+            if (userAnswer === correctAnswer) score++;
+
+            const correctOpt = Array.from(allOptions).find(opt => opt.textContent === correctAnswer);
+            if (correctOpt) correctOpt.classList.add("correct");
+            if (userAnswer !== correctAnswer) element.classList.add("wrong");
+
+            scoreBox.textContent = `Score: ${score}/${quizQuestions.length}`;
+
+            setTimeout(() => {
+                currentQuestion++;
+                if (currentQuestion < quizQuestions.length) {
+                    showQuestion(currentQuestion);
+                    attemptBox.textContent = `Questions Left: ${quizQuestions.length - currentQuestion}`;
+                } else {
+                    quizContainer.innerHTML = `
+                        <p class="scored">Quiz Finished!</p>
+                        <p class="scored">You scored <strong>${score}</strong> out of ${quizQuestions.length}!</p>
+                        <button id="play-again-btn">Play Again</button>
+                    `;
+                    attemptBox.textContent = `Questions Left: 0`;
+
+                    // Add click listener to restart
+                    document.getElementById("play-again-btn").onclick = startQuiz;
+                }
+            }, 500);
+        }
+
+        // Start the quiz
+        startQuiz();
+    </script>
+
+    <script>
+        const toggleBtn = document.querySelector('.toggle-btn');
+        const toggleIcon = document.querySelector('.toggle-btn i');
+        const dropMenu = document.querySelector('.dropmenu1');
+
+        toggleBtn.onclick = function () {
+        dropMenu.classList.toggle('open');
+        const isOpen = dropMenu.classList.contains('open');
+
+        toggleIcon.className = isOpen
+            ? 'fa-solid fa-xmark'
+            : 'fa-solid fa-bars';
+        }
+    </script>
+
+</body>
+</html>

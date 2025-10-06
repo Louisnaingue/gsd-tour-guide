@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="island.css">
+  <title>Interactive Quiz</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap" rel="stylesheet">">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="head7">
+        <header>
+            <div class="navbar">
+            <div class="toggle-btn">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        <div class="center-section">
+            <p class="title1">ISLAND KNOWLEDGE</p>
+        </div>
+        <div class="dropmenu1">
+            <ul class="ulclass">
+                <li></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="gameR.html">Random</a></li>
+                <li><a href="gameA.html">Aotearoa</a></li>
+                <li><a href="gameF.html">Fiji</a></li>
+                <li><a href="gameH.html">Hawaii</a></li>
+                <li><a href="gameT.html">Tahiti</a></li>
+                <li><a href="gameTO.html">Tonga</a></li>
+                <li><a href="game.html">Samoa</a></li>
+                <li><a href="gameE.html">Rapanui</a></li>
+            </ul>
+        </div>
+        </header>
+    </div>
+    <main>
+        <div class="score-title">A O T E A R O A </div>
+        <div class="score-board">
+            <h4 id="attempt-box">Questions Left:</h4>
+            <h4 id="score-box">Score:0/10</h4>
+        </div>
+        <div id="quiz" class="quiz-box"></div>
+    </main>
+    <footer class="game">
+        <p>&copy; 2025 by Louis Naingue</p>
+    </footer>
+    <script>
+    // Shuffle function to randomize questions
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        const questions = shuffleArray(
+            [
+            {
+                question: "What is the greeting word in Aotearoa?",
+                options: ["Talofa", "Bula Vinaka", "Kia Ora", "Aloha"],
+                answer: "Kia Ora"
+            },
+            {
+                question: "What does 'Aotearoa' mean in English?",
+                options: ["Island of Peace", "The Land of the Long White Cloud", "Home of the Maori", "Island of Sun"],
+                answer: "The Land of the Long White Cloud"
+            },
+            {
+                question: "Who is the legendary explorer said to have 'fished up' the North Island?",
+                options: ["Kupe", "Maui", "Ngake", "Hone Taiapa"],
+                answer: "Maui"
+            },
+            {
+                question: "What is the current population of New Zealand?",
+                options: ["1.3 million", "5.1 million", "9.3 million", "800 thousand"],
+                answer: "5.1 million"
+            },
+            {
+                question: "What are the two main islands of New Zealand called?",
+                options: ["Hiva and Rapa Nui", "North and South Islands", "Tahiti and Rarotonga", "Hawaii and Maui"],
+                answer: "North and South Islands"
+            },
+            {
+                question: "Who was the first European to reach New Zealand?",
+                options: ["Captain Cook", "Abel Tasman", "Jacob Roggeveen", "William Bligh"],
+                answer: "Abel Tasman"
+            },
+            {
+                question: "Which explorer made detailed maps of New Zealand?",
+                options: ["Captain James Cook", "Kupe", "Ngake", "Frank Fasi"],
+                answer: "Captain James Cook"
+            },
+            {
+                question: "According to legend, who sighted land and cried 'He ao! He ao!'?",
+                options: ["Kupe’s wife", "Maui’s brother", "Queen Liliʻuokalani", "Hone Taiapa"],
+                answer: "Kupe’s wife"
+            },
+            {
+                question: "What does 'He ao! He ao!' mean?",
+                options: ["Land ahead!", "A cloud! A cloud!", "Let’s sail!", "Peace be with you!"],
+                answer: "A cloud! A cloud!"
+            },
+            {
+                question: "What is the Maori term for the courtyard in front of a meeting house?",
+                options: ["Malae", "Marae", "Fale", "Vale"],
+                answer: "Marae"
+            },
+            {
+                question: "What is the name of the Maori meeting house in Aotearoa?",
+                options: ["Te Arohanui o Te Iwi Maori", "Fale Talimalo", "Fale Nonofo", "Hale Aloha"],
+                answer: "Te Arohanui o Te Iwi Maori"
+            },
+            {
+                question: "What does 'Te Arohanui o Te Iwi Maori' mean?",
+                options: ["The Great Love of the Maori People", "The Heart of the Islands", "Peace and Prosperity", "The Family of Warriors"],
+                answer: "The Great Love of the Maori People"
+            },
+            {
+                question: "What was the purpose of the Puhara?",
+                options: ["Cooking hut", "Watchtower for protection", "Chief’s meeting house", "Storage hut"],
+                answer: "Watchtower for protection"
+            },
+            {
+                question: "What did the Puhara guard use to warn villagers?",
+                options: ["Conch shell", "Pukaea trumpet", "Wooden drum", "Coconut horn"],
+                answer: "Pukaea trumpet"
+            },
+            {
+                question: "What is a Pataka used for?",
+                options: ["Cooking food", "Storing valuables and heirlooms", "Holding ceremonies", "Teaching children"],
+                answer: "Storing valuables and heirlooms"
+            },
+            {
+                question: "What is a 'hangi'?",
+                options: ["A pit oven for cooking", "A Maori song", "A boat ceremony", "A tattoo pattern"],
+                answer: "A pit oven for cooking"
+            },
+            {
+                question: "What does 'Whare Tupuna' mean?",
+                options: ["Ancestral Meeting House", "Family Dwelling", "Chief’s Home", "Workshop"],
+                answer: "Ancestral Meeting House"
+            },
+            {
+                question: "Who was the Whare Tupuna named after?",
+                options: ["Hawaikiroa", "Kupe", "Maui", "Ngake"],
+                answer: "Hawaikiroa"
+            },
+            {
+                question: "Who directed the carving of the Whare Tupuna?",
+                options: ["Hone Taiapa", "Hemi Witehira", "Piri Poutapu", "Jim Ruru"],
+                answer: "Hone Taiapa"
+            },
+            {
+                question: "What part of the Whare Tupuna represents the ancestor’s spine?",
+                options: ["Ridgepole", "Rafters", "Front door", "Carvings"],
+                answer: "Ridgepole"
+            },
+            {
+                question: "What are the carvings inside the meeting house made to represent?",
+                options: ["Ancestors and genealogy", "Nature and plants", "Weapons of war", "Art patterns"],
+                answer: "Ancestors and genealogy"
+            },
+            {
+                question: "What material is used for the eyes in Maori carvings?",
+                options: ["Shell from Paua (Abalone)", "Glass beads", "Bone", "Wood chips"],
+                answer: "Shell from Paua (Abalone)"
+            },
+            {
+                question: "What are 'kowhaiwhai' patterns?",
+                options: ["Tattoo designs", "Painted scroll ornamentations on rafters", "Canoe markings", "Weaving symbols"],
+                answer: "Painted scroll ornamentations on rafters"
+            },
+            {
+                question: "What do kowhaiwhai designs often represent?",
+                options: ["Foods and plants like sweet potato and fern", "War victories", "Sea voyages", "Ancestor names"],
+                answer: "Foods and plants like sweet potato and fern"
+            },
+            {
+                question: "What are the woven panels between carvings called?",
+                options: ["Pola", "Tukutuku panels", "Masi", "Ie toga"],
+                answer: "Tukutuku panels"
+            },
+            {
+                question: "What do Tukutuku panels represent?",
+                options: ["Tribal legends and stories", "Family status", "Weather patterns", "Hunting records"],
+                answer: "Tribal legends and stories"
+            },
+            {
+                question: "What is the Maori word for a war canoe?",
+                options: ["Camakau", "Waka Taua", "Drua", "Takia"],
+                answer: "Waka Taua"
+            },
+            {
+                question: "What is the name of the PCC’s war canoe from New Zealand?",
+                options: ["Te Ika-roa-a-Māui", "Te Arohanui", "Te Kauri", "Te Puhara"],
+                answer: "Te Ika-roa-a-Māui"
+            },
+            {
+                question: "What wood was the war canoe made from?",
+                options: ["Kauri wood", "Totara", "Ironwood", "Coconut"],
+                answer: "Kauri wood"
+            },
+            {
+                question: "How many people can the canoe carry?",
+                options: ["10–15", "20–25", "34–40", "50+"],
+                answer: "34–40"
+            }
+        ]);
+        let quizQuestions = []; // will hold 10 questions per game
+        let currentQuestion = 0;
+        let score = 0;
+
+        const quizContainer = document.getElementById("quiz");
+        const scoreBox = document.getElementById("score-box");
+        const attemptBox = document.getElementById("attempt-box");
+
+        function startQuiz() {
+            // Pick 10 random questions
+            const shuffledQuestions = shuffleArray(questions);
+            quizQuestions = shuffledQuestions.slice(0, 10);
+
+            // Reset score and question index
+            currentQuestion = 0;
+            score = 0;
+
+            scoreBox.textContent = `Score: 0/${quizQuestions.length}`;
+            attemptBox.textContent = `Questions Left: ${quizQuestions.length}`;
+
+            // Show first question
+            showQuestion(currentQuestion);
+        }
+
+        function showQuestion(index) {
+            const q = quizQuestions[index];
+            quizContainer.innerHTML = `
+                <div class="question">${q.question}</div>
+                ${q.options.map(opt => `
+                    <div class="opt" onclick="revealAnswer(this, '${opt}', '${q.answer}')">${opt}</div>
+                `).join("")} 
+            `;
+        }
+
+        function revealAnswer(element, userAnswer, correctAnswer) {
+            const allOptions = document.querySelectorAll(".opt");
+            allOptions.forEach(opt => opt.onclick = null);
+
+            if (userAnswer === correctAnswer) score++;
+
+            const correctOpt = Array.from(allOptions).find(opt => opt.textContent === correctAnswer);
+            if (correctOpt) correctOpt.classList.add("correct");
+            if (userAnswer !== correctAnswer) element.classList.add("wrong");
+
+            scoreBox.textContent = `Score: ${score}/${quizQuestions.length}`;
+
+            setTimeout(() => {
+                currentQuestion++;
+                if (currentQuestion < quizQuestions.length) {
+                    showQuestion(currentQuestion);
+                    attemptBox.textContent = `Questions Left: ${quizQuestions.length - currentQuestion}`;
+                } else {
+                    quizContainer.innerHTML = `
+                        <p class="scored">Quiz Finished!</p>
+                        <p class="scored">You scored <strong>${score}</strong> out of ${quizQuestions.length}!</p>
+                        <button id="play-again-btn">Play Again</button>
+                    `;
+                    attemptBox.textContent = `Questions Left: 0`;
+
+                    // Add click listener to restart
+                    document.getElementById("play-again-btn").onclick = startQuiz;
+                }
+            }, 500);
+        }
+
+        // Start the quiz
+        startQuiz();
+    </script>
+
+    <script>
+        const toggleBtn = document.querySelector('.toggle-btn');
+        const toggleIcon = document.querySelector('.toggle-btn i');
+        const dropMenu = document.querySelector('.dropmenu1');
+
+        toggleBtn.onclick = function () {
+        dropMenu.classList.toggle('open');
+        const isOpen = dropMenu.classList.contains('open');
+
+        toggleIcon.className = isOpen
+            ? 'fa-solid fa-xmark'
+            : 'fa-solid fa-bars';
+        }
+    </script>
+
+</body>
+</html>
