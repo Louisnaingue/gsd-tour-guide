@@ -194,56 +194,73 @@
                 answer: "The authority to speak"
             }
         ]);
-        const shuffledQuestions = shuffleArray(questions); 
-        const quizQuestions = shuffledQuestions.slice(0, 10);
-
+        let quizQuestions = []; // will hold 10 questions per game
         let currentQuestion = 0;
-        const quizContainer = document.getElementById("quiz");
         let score = 0;
-        const scoreBox = document.getElementById("score-box"); 
-        const attemptBox = document.getElementById("attempt-box"); // ✅ new
+
+        const quizContainer = document.getElementById("quiz");
+        const scoreBox = document.getElementById("score-box");
+        const attemptBox = document.getElementById("attempt-box");
+
+        function startQuiz() {
+            // Pick 10 random questions
+            const shuffledQuestions = shuffleArray(questions);
+            quizQuestions = shuffledQuestions.slice(0, 10);
+
+            // Reset score and question index
+            currentQuestion = 0;
+            score = 0;
+
+            scoreBox.textContent = `Score: 0/${quizQuestions.length}`;
+            attemptBox.textContent = `Questions Left: ${quizQuestions.length}`;
+
+            // Show first question
+            showQuestion(currentQuestion);
+        }
 
         function showQuestion(index) {
-            const q = quizQuestions[index]; 
+            const q = quizQuestions[index];
             quizContainer.innerHTML = `
                 <div class="question">${q.question}</div>
                 ${q.options.map(opt => `
                     <div class="opt" onclick="revealAnswer(this, '${opt}', '${q.answer}')">${opt}</div>
-                `).join("")}
+                `).join("")} 
             `;
-            attemptBox.textContent = `Questions Left: ${quizQuestions.length - currentQuestion}`;
         }
 
         function revealAnswer(element, userAnswer, correctAnswer) {
             const allOptions = document.querySelectorAll(".opt");
-            allOptions.forEach(opt => {
-                opt.onclick = null;
-                if (opt.textContent === correctAnswer) {
-                    opt.classList.add("correct");
-                } else if (opt.textContent === userAnswer) {
-                    opt.classList.add("wrong");
-                }
-            });
-            if (userAnswer === correctAnswer) {
-                score++;
-                scoreBox.textContent = `Score: ${score}/${quizQuestions.length}`;
-            }
+            allOptions.forEach(opt => opt.onclick = null);
 
+            if (userAnswer === correctAnswer) score++;
+
+            const correctOpt = Array.from(allOptions).find(opt => opt.textContent === correctAnswer);
+            if (correctOpt) correctOpt.classList.add("correct");
+            if (userAnswer !== correctAnswer) element.classList.add("wrong");
+
+            scoreBox.textContent = `Score: ${score}/${quizQuestions.length}`;
 
             setTimeout(() => {
                 currentQuestion++;
                 if (currentQuestion < quizQuestions.length) {
                     showQuestion(currentQuestion);
+                    attemptBox.textContent = `Questions Left: ${quizQuestions.length - currentQuestion}`;
                 } else {
                     quizContainer.innerHTML = `
-                            <p class="scored">Quiz Finished!</p>
-                            <p class="scored">You scored <strong>${score}</strong> out of ${quizQuestions.length}!</p>
+                        <p class="scored">Quiz Finished!</p>
+                        <p class="scored">You scored <strong>${score}</strong> out of ${quizQuestions.length}!</p>
+                        <button id="play-again-btn">Play Again</button>
                     `;
+                    attemptBox.textContent = `Questions Left: 0`;
+
+                    // Add click listener to restart
+                    document.getElementById("play-again-btn").onclick = startQuiz;
                 }
             }, 500);
         }
 
-        showQuestion(currentQuestion);
+        // Start the quiz
+        startQuiz();
     </script>
 
     <script>

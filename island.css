@@ -489,6 +489,23 @@ p {
     text-align: center;            /* center the text */
     margin: 10px 0;                /* spacing between lines */
 }
+
+#play-again-btn {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 25px;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: none;
+    background-color: #2ecc71;
+    color: white;
+    cursor: pointer;
+}
+
+#play-again-btn:hover {
+    background-color: rgba(255, 255, 255, 0.3); 
+    backdrop-filter: blur(15px);
+}
 /*Responsive (mobile view) */
 @media screen and (max-width: 768px) {
 .navbar .links {
