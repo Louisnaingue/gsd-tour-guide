@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="island.css">
+  <title>Interactive Quiz</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap" rel="stylesheet">">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="head7">
+        <header>
+            <div class="navbar">
+            <div class="toggle-btn">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        <div class="center-section">
+            <p class="title1">ISLAND KNOWLEDGE</p>
+        </div>
+        <div class="dropmenu1">
+            <ul class="ulclass">
+                <li></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="islands.html">Islands</a></li>
+            </ul>
+        </div>
+        </header>
+    </div>
+    <main>
+        <div class="score-board">
+            <h4 id="attempt-box">Questions Left:</h4>
+            <h4 id="score-box">Score:0/25</h4>
+        </div>
+        <div id="quiz" class="quiz-box"></div>
+    </main>
+    <footer class="game">
+        <p>&copy; 2025 by Louis Naingue</p>
+    </footer>
+    <script>
+    // Shuffle function to randomize questions
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        const questions = shuffleArray([
+            {
+                question: "What word do Samoans use to greet others?",
+                options: ["Malo", "Talofa", "Aloha", "Kia Ora"],
+                answer: "Talofa"
+            },
+            {
+                question: "Why is Samoa called 'The Heart of Polynesia'?",
+                options: [
+                "It has the largest population in Polynesia",
+                "It was the first Polynesian country discovered",
+                "It is located in the center of the Polynesian triangle",
+                "It was the birthplace of Polynesian culture"
+                ],
+                answer: "It is located in the center of the Polynesian triangle"
+            },
+            {
+                question: "How many Samoas are there geographically?",
+                options: ["One", "Three", "Two", "Four"],
+                answer: "Two"
+            },
+            {
+                question: "Which islands make up independent Samoa?",
+                options: ["Savai’i and Upolu", "Tutuila and Aunu’u", "Tahiti and Bora Bora", "Fiji and Tonga"],
+                answer: "Savai’i and Upolu"
+            },
+            {
+                question: "Which islands belong to American Samoa?",
+                options: ["Savai’i and Upolu", "Tutuila and the eastern islands", "Tonga and Niue", "Palau and Yap"],
+                answer: "Tutuila and the eastern islands"
+            },
+            {
+                question: "Who discovered Samoa in 1722?",
+                options: ["Captain Cook", "Ferdinand Magellan", "Jacob Roggeveen", "William Bligh"],
+                answer: "Jacob Roggeveen"
+            },
+            {
+                question: "Western Samoa was once ruled by which country before World War I?",
+                options: ["France", "Germany", "United States", "New Zealand"],
+                answer: "Germany"
+            },
+            {
+                question: "Which country administered Western Samoa after World War I?",
+                options: ["Germany", "New Zealand", "France", "The United Kingdom"],
+                answer: "New Zealand"
+            },
+            {
+                question: "When did Western Samoa become independent?",
+                options: ["1945", "1950", "1962", "1972"],
+                answer: "1962"
+            },
+            {
+                question: "What is the central open area of a Samoan village called?",
+                options: ["Fale", "Malae", "Ava", "Tanoa"],
+                answer: "Malae"
+            },
+            {
+                question: "Why do Samoan houses have round roofs and no walls?",
+                options: [
+                "For decoration",
+                "To hold more people",
+                "To keep the interior cool and breezy",
+                "To make construction cheaper"
+                ],
+                answer: "To keep the interior cool and breezy"
+            },
+            {
+                question: "What are woven coconut leaf blinds called in Samoa?",
+                options: ["Fala", "Ie toga", "Pola", "Ava"],
+                answer: "Pola"
+            },
+            {
+                question: "In Samoa, who is traditionally responsible for cooking in the tunoa or umu kuka?",
+                options: ["Women", "Children", "Men", "Chiefs"],
+                answer: "Men"
+            },
+            {
+                question: "What is the Samoan term for 'The Samoan Way of Life'?",
+                options: ["Fale Samoa", "Ava Samoa", "Fa’a Samoa", "Malo Samoa"],
+                answer: "Fa’a Samoa"
+            },
+            {
+                question: "What is the white liquid made by squeezing grated coconut?",
+                options: ["Coconut water", "Coconut cream", "Coconut milk", "Coconut oil"],
+                answer: "Coconut milk"
+            },
+            {
+                question: "What is the Samoan word for a family dwelling house?",
+                options: ["Fale Talimalo", "Fale Fono", "Fale Nonofo", "Maota Tofa"],
+                answer: "Fale Nonofo"
+            },
+            {
+                question: "What is a Fale Talimalo used for?",
+                options: ["To receive and host guests", "To store tools", "To cook food", "To hold council meetings"],
+                answer: "To receive and host guests"
+            },
+            {
+                question: "When not hosting guests, a Fale Talimalo can serve as what?",
+                options: ["A sleeping area", "A storage room", "A Fale Fono (meeting house)", "A kitchen"],
+                answer: "A Fale Fono (meeting house)"
+            },
+            {
+                question: "What happens if a stranger claims the 'stranger’s post' during a meeting?",
+                options: [
+                "He is ignored",
+                "He must leave",
+                "The post must be surrendered to him",
+                "He becomes the chief"
+                ],
+                answer: "The post must be surrendered to him"
+            },
+            {
+                question: "What does the Kava ceremony represent in Samoa?",
+                options: ["Entertainment", "Religious worship", "Unity, peace, and loyalty among chiefs", "Competition"],
+                answer: "Unity, peace, and loyalty among chiefs"
+            },
+            {
+                question: "What are ie toga in Samoa?",
+                options: ["Coconut shells", "Fine ceremonial mats", "Blinds for the house", "Cooking leaves"],
+                answer: "Fine ceremonial mats"
+            },
+            {
+                question: "What does the Samoan word Matai mean?",
+                options: ["Priest", "Chief or leader", "Fisherman", "Builder"],
+                answer: "Chief or leader"
+            },
+            {
+                question: "How high is the Chief’s House (Maota Tofa) usually raised from the ground?",
+                options: ["2–3 feet", "5–8 feet", "10–12 feet", "It is not raised"],
+                answer: "5–8 feet"
+            },
+            {
+                question: "Who introduced tattooing to Samoa, according to legend?",
+                options: ["Missionaries", "Two Samoan brothers", "Two Fijian women, Taema and Tifaiga", "The first chiefs"],
+                answer: "Two Fijian women, Taema and Tifaiga"
+            },
+            {
+                question: "What does the To’oto’o (staff) used by chiefs symbolize?",
+                options: ["Strength and bravery", "Hospitality", "The authority to speak", "Wisdom"],
+                answer: "The authority to speak"
+            }
+        ]);
+
+        let currentQuestion = 0;
+        const quizContainer = document.getElementById("quiz");
+        let score = 0;
+        const scoreBox = document.getElementById("score-box"); 
+        const attemptBox = document.getElementById("attempt-box"); // ✅ new
+
+        function showQuestion(index) {
+            const q = questions[index];
+            quizContainer.innerHTML = `
+                <div class="question">${q.question}</div>
+                ${q.options.map(opt => `
+                    <div class="opt" onclick="revealAnswer(this, '${opt}', '${q.answer}')">${opt}</div>
+                `).join("")}
+            `;
+            attemptBox.textContent = `Questions Left: ${questions.length - currentQuestion}`;
+        }
+
+        function revealAnswer(element, userAnswer, correctAnswer) {
+            const allOptions = document.querySelectorAll(".opt");
+            allOptions.forEach(opt => {
+                opt.onclick = null;
+                if (opt.textContent === correctAnswer) {
+                    opt.classList.add("correct");
+                } else if (opt.textContent === userAnswer) {
+                    opt.classList.add("wrong");
+                }
+            });
+            if (userAnswer === correctAnswer) {
+                score++;
+                scoreBox.textContent = `Score: ${score}/${questions.length}`;
+            }
+
+
+            setTimeout(() => {
+                currentQuestion++;
+                if (currentQuestion < questions.length) {
+                    showQuestion(currentQuestion);
+                } else {
+                    quizContainer.innerHTML = `
+                        <h2>Quiz Finished!</h2>
+                        <p>Great job! You completed all questions.</p>
+                    `;
+                }
+            }, 500);
+        }
+
+        showQuestion(currentQuestion);
+    </script>
+
+    <script>
+        const toggleBtn = document.querySelector('.toggle-btn');
+        const toggleIcon = document.querySelector('.toggle-btn i');
+        const dropMenu = document.querySelector('.dropmenu1');
+
+        toggleBtn.onclick = function () {
+        dropMenu.classList.toggle('open');
+        const isOpen = dropMenu.classList.contains('open');
+
+        toggleIcon.className = isOpen
+            ? 'fa-solid fa-xmark'
+            : 'fa-solid fa-bars';
+        }
+    </script>
+
+</body>
+</html>
