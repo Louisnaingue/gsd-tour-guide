@@ -297,6 +297,17 @@ p {
     width: 250px;             /* set image width */
     height: auto;             /* keeps proportion */
 }
+.image-left2 {
+    display: flex;            /* puts image and text side by side */
+    align-items: center;      /* vertically centers them */
+    gap: 20px;                /* space between image and text */
+    margin-bottom: 0;      /* space after section */
+}
+
+.image-left2 img {
+    width: 200px;             /* set image width */
+    height: auto;             /* keeps proportion */
+}
 .samoa {
     background-color: rgb(32, 86, 125);
 }
