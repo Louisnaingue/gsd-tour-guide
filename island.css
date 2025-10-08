@@ -127,6 +127,15 @@ h2 {
     padding: 10px;
     font-family: "Cinzel", serif;
 }
+.FJ{
+    border-radius: 10px;
+    background-color: rgb(181, 77, 8);
+    text-align: center;
+    color: rgb(246, 246, 246);
+    padding: 10px;
+    font-family: "Cinzel", serif;
+}
+
 
 h3{
     border-radius: 10px;
@@ -383,6 +392,17 @@ p {
     width: 170px;             /* set image width */
     height: auto;             /* keeps proportion */
 }
+.image-right {
+    display: flex;            /* puts image and text side by side */
+    align-items: center;      /* vertically centers them */
+    gap: 20px;                /* space between image and text */
+    margin-bottom: 0;      /* space after section */
+}
+
+.image-right img {
+    width: 220px;             /* set image width */
+    height: auto;             /* keeps proportion */
+}
 
 .image-left p {
     padding: 0;
@@ -454,6 +474,11 @@ p {
     margin: 0;
     text-align: left;
     background-color: rgb(103, 61, 134);
+}
+.term2 {
+    margin: 0;
+    text-align: left;
+    background-color: rgb(181, 77, 8);
 }
 .pos {
     margin-left: 20px;
