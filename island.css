@@ -112,13 +112,24 @@ header {
 
 }
 h2 {
+    border-radius: 10px;
     background-color: rgb(164, 135, 86);
     text-align: center;
     color: rgb(246, 246, 246);
     padding: 10px;
     font-family: "Cinzel", serif;
 }
+.AT{
+    border-radius: 10px;
+    background-color: rgb(103, 61, 134);
+    text-align: center;
+    color: rgb(246, 246, 246);
+    padding: 10px;
+    font-family: "Cinzel", serif;
+}
+
 h3{
+    border-radius: 10px;
     background-color: rgb(164, 135, 86);
     text-align: center;
     color: rgb(246, 246, 246);
@@ -281,6 +292,38 @@ h3{
     max-width: 100%;
     height: auto;
 }
+.picheader1 {
+    text-align: center;
+    color: black;
+    background-color: rgb(255, 255, 255);
+    padding: 0x; /* gives some space inside */
+}
+.picheader1 img {
+    max-width: 100%;
+    height: auto;
+}
+.cap {
+    text-align: center;
+    font-size: 9px;
+}
+.carvers {
+    display: grid;
+    grid-template-columns: 50% 50%; /* two equal columns */
+    gap: 0; /* no space between them */
+    background-color: white;
+    padding: 10px;
+}
+
+.carvers > figure {
+    margin: 0; /* remove default margin around figure */
+}
+
+.carvers > figure img {
+    width: 100%;   /* make image fill its column */
+    height: auto;  /* keep image ratio */
+    display: block; /* removes tiny space below images */
+}
+
 
 section {
     margin: 10px;
@@ -406,6 +449,11 @@ p {
 .term {
     margin: 0;
     text-align: left;
+}
+.term1 {
+    margin: 0;
+    text-align: left;
+    background-color: rgb(103, 61, 134);
 }
 .pos {
     margin-left: 20px;
