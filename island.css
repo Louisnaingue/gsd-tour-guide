@@ -332,8 +332,14 @@ h3{
     height: auto;  /* keep image ratio */
     display: block; /* removes tiny space below images */
 }
+.center {
+    text-align: center;
+}
 
-
+.pictitle{
+    text-align: center;
+    font-size: x-small;
+}
 section {
     margin: 10px;
 }
