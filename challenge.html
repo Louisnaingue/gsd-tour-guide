@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap" rel="stylesheet">">
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap" rel="stylesheet">
@@ -40,14 +40,21 @@
         </div>
         </header>
     </div>
+    <div id="startModal" class="modal">
+        <div class="modal-content">
+          <button id="start-btn">Start Quiz</button>
+        </div>
+      </div>
     <main>
-        <div class="score-title">R A N D O M</div>
+        <div class="score-title">C H A L L E N G E</div>
         <div class="score-board">
             <h4 id="attempt-box">Questions Left:</h4>
-            <h4 id="score-box">Score:0/10</h4>
+            <h4 id="timer-box">Time: 0s</h4>
+            <h4 id="score-box">Score:0/25</h4>
         </div>
         <div id="quiz" class="quiz-box"></div>
     </main>
+
     <footer class="game">
         <p>&copy; 2025 by Louis Naingue</p>
     </footer>
@@ -954,75 +961,97 @@
                 options: ["Strength and bravery", "Hospitality", "The authority to speak", "Wisdom"],
                 answer: "The authority to speak"
             }
-           
         ]);
-        let quizQuestions = []; // will hold 10 questions per game
-        let currentQuestion = 0;
-        let score = 0;
+        
+        let quizQuestions = [];
+    let currentQuestion = 0;
+    let score = 0;
+    let startTime;
+    let timerInterval;
 
-        const quizContainer = document.getElementById("quiz");
-        const scoreBox = document.getElementById("score-box");
-        const attemptBox = document.getElementById("attempt-box");
+    const quizContainer = document.getElementById("quiz");
+    const scoreBox = document.getElementById("score-box");
+    const attemptBox = document.getElementById("attempt-box");
+    const timerBox = document.getElementById("timer-box");
 
-        function startQuiz() {
-            // Pick 10 random questions
-            const shuffledQuestions = shuffleArray(questions);
-            quizQuestions = shuffledQuestions.slice(0, 20);
+    function startStopwatch() {
+        startTime = Date.now();
+        timerInterval = setInterval(() => {
+            const elapsed = Math.floor((Date.now() - startTime) / 1000);
+            timerBox.textContent = `Time: ${elapsed}s`;
+        }, 1000);
+    }
 
-            // Reset score and question index
-            currentQuestion = 0;
-            score = 0;
+    function stopStopwatch() {
+        clearInterval(timerInterval);
+    }
 
-            scoreBox.textContent = `Score: 0/${quizQuestions.length}`;
-            attemptBox.textContent = `Questions Left: ${quizQuestions.length}`;
+    function startQuiz() {
+        const shuffledQuestions = shuffleArray(questions);
+        quizQuestions = shuffledQuestions.slice(0, 25);
 
-            // Show first question
-            showQuestion(currentQuestion);
-        }
+        currentQuestion = 0;
+        score = 0;
 
-        function showQuestion(index) {
-            const q = quizQuestions[index];
-            quizContainer.innerHTML = `
-                <div class="question">${q.question}</div>
-                ${q.options.map(opt => `
-                    <div class="opt" onclick="revealAnswer(this, '${opt}', '${q.answer}')">${opt}</div>
-                `).join("")} 
-            `;
-        }
+        scoreBox.textContent = `Score: 0/${quizQuestions.length}`;
+        attemptBox.textContent = `Questions Left: ${quizQuestions.length}`;
+        timerBox.textContent = `Time: 0s`;
 
-        function revealAnswer(element, userAnswer, correctAnswer) {
-            const allOptions = document.querySelectorAll(".opt");
-            allOptions.forEach(opt => opt.onclick = null);
+        showQuestion(currentQuestion);
 
-            if (userAnswer === correctAnswer) score++;
+        stopStopwatch(); 
+        startStopwatch();
+    }
 
-            const correctOpt = Array.from(allOptions).find(opt => opt.textContent === correctAnswer);
-            if (correctOpt) correctOpt.classList.add("correct");
-            if (userAnswer !== correctAnswer) element.classList.add("wrong");
+    function showQuestion(index) {
+        const q = quizQuestions[index];
+        quizContainer.innerHTML = `
+            <div class="question">${q.question}</div>
+            ${q.options.map(opt => `<div class="opt" onclick="revealAnswer(this,'${opt}','${q.answer}')">${opt}</div>`).join("")}
+        `;
+    }
 
-            scoreBox.textContent = `Score: ${score}/${quizQuestions.length}`;
+    function revealAnswer(element, userAnswer, correctAnswer) {
+        const allOptions = document.querySelectorAll(".opt");
+        allOptions.forEach(opt => opt.onclick = null);
 
-            setTimeout(() => {
-                currentQuestion++;
-                if (currentQuestion < quizQuestions.length) {
-                    showQuestion(currentQuestion);
-                    attemptBox.textContent = `Questions Left: ${quizQuestions.length - currentQuestion}`;
-                } else {
-                    quizContainer.innerHTML = `
-                        <p class="scored">Quiz Finished!</p>
-                        <p class="scored">You scored <strong>${score}</strong> out of ${quizQuestions.length}!</p>
-                        <button id="play-again-btn">Play Again</button>
-                    `;
-                    attemptBox.textContent = `Questions Left: 0`;
+        if (userAnswer === correctAnswer) score++;
 
-                    // Add click listener to restart
-                    document.getElementById("play-again-btn").onclick = startQuiz;
-                }
-            }, 500);
-        }
+        const correctOpt = Array.from(allOptions).find(opt => opt.textContent === correctAnswer);
+        if (correctOpt) correctOpt.classList.add("correct");
+        if (userAnswer !== correctAnswer) element.classList.add("wrong");
 
-        // Start the quiz
+        scoreBox.textContent = `Score: ${score}/${quizQuestions.length}`;
+
+        setTimeout(() => {
+            currentQuestion++;
+            if (currentQuestion < quizQuestions.length) {
+                showQuestion(currentQuestion);
+                attemptBox.textContent = `Questions Left: ${quizQuestions.length - currentQuestion}`;
+            } else {
+                stopStopwatch();
+                quizContainer.innerHTML = `
+                    <p class="scored">Quiz Finished!</p>
+                    <p class="scored">You scored <strong>${score}</strong> out of ${quizQuestions.length}!</p>
+                    <p class="scored">You finished the quiz in <strong>${Math.floor((Date.now() - startTime)/1000)}</strong> seconds!</p>
+                    <button id="play-again-btn">Play Again</button>
+                `;
+                attemptBox.textContent = `Questions Left: 0`;
+
+                document.getElementById("play-again-btn").onclick = () => {
+                    document.getElementById("startModal").style.display = "flex";
+                    quizContainer.innerHTML = "";
+                    timerBox.textContent = `Time Left: ${totalTime}s`;
+                };
+            }
+        }, 500);
+    }
+
+    // Modal button
+    document.getElementById("start-btn").onclick = () => {
+        document.getElementById("startModal").style.display = "none";
         startQuiz();
+    };
     </script>
 
     <script>
@@ -1031,14 +1060,10 @@
         const dropMenu = document.querySelector('.dropmenu1');
 
         toggleBtn.onclick = function () {
-        dropMenu.classList.toggle('open');
-        const isOpen = dropMenu.classList.contains('open');
-
-        toggleIcon.className = isOpen
-            ? 'fa-solid fa-xmark'
-            : 'fa-solid fa-bars';
+            dropMenu.classList.toggle('open');
+            const isOpen = dropMenu.classList.contains('open');
+            toggleIcon.className = isOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
         }
     </script>
-
 </body>
 </html>
