@@ -1072,8 +1072,8 @@
                 if (leaderboard.length === 0) {
                     leaderboard.push({
                     name: "Louis Naingue",
-                    score: 0,
-                    time: 0
+                    score: 25,
+                    time: 100
                 });
 
                 localStorage.setItem(leaderboardKey, JSON.stringify(leaderboard));
@@ -1122,7 +1122,6 @@
             document.getElementById("startModal").style.display = "none";
             startQuiz();
         };
-        localStorage.removeItem("quizLeaderboard");
         
 
         // Load leaderboard on page load
