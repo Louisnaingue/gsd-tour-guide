@@ -1002,30 +1002,30 @@
         
         // Shuffle function
         function shuffleArray(array) {
-        for (let i = array.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]];
-        }
-        return array;
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
         }
 
         // Stopwatch
         function startStopwatch() {
-        startTime = Date.now();
-        timerInterval = setInterval(() => {
-            const elapsed = Math.floor((Date.now() - startTime) / 1000);
-            timerBox.textContent = `Time: ${elapsed}s`;
-        }, 1000);
+            startTime = Date.now();
+            timerInterval = setInterval(() => {
+                const elapsed = Math.floor((Date.now() - startTime) / 1000);
+                timerBox.textContent = `Time: ${elapsed}s`;
+            }, 1000);
         }
         function stopStopwatch() { clearInterval(timerInterval); }
 
         // Show question
         function showQuestion(index) {
-        const q = quizQuestions[index];
-        quizContainer.innerHTML = `
-            <div class="question">${q.question}</div>
-            ${q.options.map(opt => `<div class="opt" onclick="revealAnswer('${opt}','${q.answer}')">${opt}</div>`).join("")}
-        `;
+            const q = quizQuestions[index];
+            quizContainer.innerHTML = `
+                <div class="question">${q.question}</div>
+                ${q.options.map(opt => `<div class="opt" onclick="revealAnswer('${opt}','${q.answer}')">${opt}</div>`).join("")}
+            `;
         }
 
         // Reveal answer
@@ -1074,7 +1074,7 @@
         username = document.getElementById("name").value.trim();
             if (!username) { alert("Please enter your name!"); return; }
             document.getElementById("startModal").style.display = "none";
-            quizQuestions = shuffleArray(questions);
+            quizQuestions = shuffleArray(questions).slice(0,25);
             currentQuestion = 0;
             score = 0;
             scoreBox.textContent = `Score: 0/${quizQuestions.length}`;
