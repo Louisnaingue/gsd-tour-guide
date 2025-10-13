@@ -1065,16 +1065,25 @@
             }, 500);
         }
 
+        function preloadLeaderboard() {
+            let leaderboard = JSON.parse(localStorage.getItem(leaderboardKey)) || [];
+
+                // Only add default if leaderboard is empty
+                if (leaderboard.length === 0) {
+                    leaderboard.push({
+                    name: "Louis Naingue",
+                    score: 0,
+                    time: 0
+                });
+
+                localStorage.setItem(leaderboardKey, JSON.stringify(leaderboard));
+                }
+        }
         // Save scores and sort top 5
         function saveScore(name, score, time) {
             let leaderboard = JSON.parse(localStorage.getItem(leaderboardKey)) || [];
 
-            if (leaderboard.length === 0) {
-                leaderboard.push({
-                name: "Louis Naingue",
-                score: 25,
-                time: 100
-                });
+            leaderboard.push({ name, score, time });
 
             // Sort: highest score first, then shortest time
             leaderboard.sort((a, b) => b.score - a.score || a.time - b.time);
@@ -1083,7 +1092,7 @@
             leaderboard = leaderboard.slice(0, 5);
 
             localStorage.setItem(leaderboardKey, JSON.stringify(leaderboard));
-            }
+
             displayLeaderboard();
         }
 
@@ -1115,7 +1124,10 @@
         };
 
         // Load leaderboard on page load
-        window.onload = displayLeaderboard;
+        window.onload = function() {
+            preloadLeaderboard();
+            displayLeaderboard();
+        };
         </script>
 
         <script>
