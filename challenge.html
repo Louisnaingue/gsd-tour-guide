@@ -70,15 +70,40 @@
     <footer class="game">
         <p>&copy; 2025 by Louis Naingue</p>
     </footer>
-    <script>
-    // Shuffle function to randomize questions
-        function shuffleArray(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
-            }
-            return array;
-        }
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+        import { getDatabase, ref, set, push, onValue, get } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-database.js";
+        
+        // Firebase config
+        const firebaseConfig = {
+          apiKey: "AIzaSyDy7XQNcR15-rNkgFmwacjp0x03SDN0Dkw",
+          authDomain: "louis-gsd-department.firebaseapp.com",
+          projectId: "louis-gsd-department",
+          storageBucket: "louis-gsd-department.appspot.com",
+          messagingSenderId: "578702651837",
+          appId: "1:578702651837:web:79d93b30605097476362d4",
+          measurementId: "G-V231T7756K"
+        };
+        
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+        
+        // DOM elements
+        const quizContainer = document.getElementById("quiz");
+        const scoreBox = document.getElementById("score-box");
+        const attemptBox = document.getElementById("attempt-box");
+        const timerBox = document.getElementById("timer-box");
+        const usrname = document.getElementById("user-name");
+        const displayList = document.getElementById("displayList");
+        const startBtn = document.getElementById("start-btn");
+        
+        let quizQuestions = [];
+        let currentQuestion = 0;
+        let score = 0;
+        let startTime;
+        let timerInterval;
+        let username;
 
         const questions = shuffleArray(
             [
@@ -975,180 +1000,139 @@
             }
         ]);
         
-        let quizQuestions = [];
-        let currentQuestion = 0;
-        let score = 0;
-        let startTime;
-        let timerInterval;
-        let username;
+        // Shuffle function
+        function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+        }
 
-        const quizContainer = document.getElementById("quiz");
-        const scoreBox = document.getElementById("score-box");
-        const attemptBox = document.getElementById("attempt-box");
-        const timerBox = document.getElementById("timer-box");
-        const usrname = document.getElementById("user-name");
-
+        // Stopwatch
         function startStopwatch() {
-            startTime = Date.now();
-            timerInterval = setInterval(() => {
-                const elapsed = Math.floor((Date.now() - startTime) / 1000);
-                timerBox.textContent = `Time: ${elapsed}s`;
-            }, 1000);
+        startTime = Date.now();
+        timerInterval = setInterval(() => {
+            const elapsed = Math.floor((Date.now() - startTime) / 1000);
+            timerBox.textContent = `Time: ${elapsed}s`;
+        }, 1000);
+        }
+        function stopStopwatch() { clearInterval(timerInterval); }
+
+        // Show question
+        function showQuestion(index) {
+        const q = quizQuestions[index];
+        quizContainer.innerHTML = `
+            <div class="question">${q.question}</div>
+            ${q.options.map(opt => `<div class="opt" onclick="revealAnswer('${opt}','${q.answer}')">${opt}</div>`).join("")}
+        `;
         }
 
-        function stopStopwatch() {
-            clearInterval(timerInterval);
-        }
+        // Reveal answer
+        window.revealAnswer = async function(userAnswer, correctAnswer) {
+        const allOptions = document.querySelectorAll(".opt");
+        allOptions.forEach(opt => opt.onclick = null);
 
-        function startQuiz() {
-            const shuffledQuestions = shuffleArray(questions);
-            quizQuestions = shuffledQuestions.slice(0, 25);
+        if (userAnswer === correctAnswer) score++;
+
+        allOptions.forEach(opt => {
+            if (opt.textContent === correctAnswer) opt.classList.add("correct");
+            if (opt.textContent === userAnswer && userAnswer !== correctAnswer) opt.classList.add("wrong");
+        });
+
+        scoreBox.textContent = `Score: ${score}/${quizQuestions.length}`;
+
+        setTimeout(async () => {
+            currentQuestion++;
+            if (currentQuestion < quizQuestions.length) {
+            showQuestion(currentQuestion);
+            attemptBox.textContent = `Questions Left: ${quizQuestions.length - currentQuestion}`;
+            } else {
+            stopStopwatch();
+            const totalTime = Math.floor((Date.now() - startTime) / 1000);
+            await saveScoreToFirebase(username, score, totalTime);
+
+            quizContainer.innerHTML = `
+                <p class="scored">Quiz Finished!</p>
+                <p class="scored">You scored <strong>${score}</strong> out of ${quizQuestions.length}!</p>
+                <p class="scored">You finished the quiz in <strong>${totalTime}</strong> seconds!</p>
+                <button id="play-again-btn">Play Again</button>
+            `;
+            attemptBox.textContent = `Questions Left: 0`;
+
+            document.getElementById("play-again-btn").onclick = () => {
+                document.getElementById("startModal").style.display = "flex";
+                quizContainer.innerHTML = "";
+                timerBox.textContent = `Time: 0s`;
+            };
+            }
+        }, 500);
+        };
+
+        // Start quiz
+        startBtn.onclick = () => {
+        username = document.getElementById("name").value.trim();
+            if (!username) { alert("Please enter your name!"); return; }
+            document.getElementById("startModal").style.display = "none";
+            quizQuestions = shuffleArray(questions);
             currentQuestion = 0;
             score = 0;
-
             scoreBox.textContent = `Score: 0/${quizQuestions.length}`;
             attemptBox.textContent = `Questions Left: ${quizQuestions.length}`;
             timerBox.textContent = `Time: 0s`;
             usrname.textContent = `Challenger: ${username}`;
-
             showQuestion(currentQuestion);
             stopStopwatch();
             startStopwatch();
-        }
-
-        function showQuestion(index) {
-            const q = quizQuestions[index];
-            quizContainer.innerHTML = `
-                <div class="question">${q.question}</div>
-                ${q.options.map(opt => `<div class="opt" onclick="revealAnswer(this,'${opt}','${q.answer}')">${opt}</div>`).join("")}
-            `;
-        }
-
-        function revealAnswer(element, userAnswer, correctAnswer) {
-            const allOptions = document.querySelectorAll(".opt");
-            allOptions.forEach(opt => opt.onclick = null);
-
-            if (userAnswer === correctAnswer) score++;
-
-            const correctOpt = Array.from(allOptions).find(opt => opt.textContent === correctAnswer);
-            if (correctOpt) correctOpt.classList.add("correct");
-            if (userAnswer !== correctAnswer) element.classList.add("wrong");
-
-            scoreBox.textContent = `Score: ${score}/${quizQuestions.length}`;
-
-            setTimeout(() => {
-                currentQuestion++;
-                if (currentQuestion < quizQuestions.length) {
-                    showQuestion(currentQuestion);
-                    attemptBox.textContent = `Questions Left: ${quizQuestions.length - currentQuestion}`;
-                } else {
-                    stopStopwatch();
-                    const totalTime = Math.floor((Date.now() - startTime) / 1000);
-                    saveScore(username, score, totalTime);
-
-                    quizContainer.innerHTML = `
-                        <p class="scored">Quiz Finished!</p>
-                        <p class="scored">You scored <strong>${score}</strong> out of ${quizQuestions.length}!</p>
-                        <p class="scored">You finished the quiz in <strong>${totalTime}</strong> seconds!</p>
-                        <button id="play-again-btn">Play Again</button>
-                    `;
-                    attemptBox.textContent = `Questions Left: 0`;
-
-                    document.getElementById("play-again-btn").onclick = () => {
-                        document.getElementById("startModal").style.display = "flex";
-                        quizContainer.innerHTML = "";
-                        timerBox.textContent = `Time: 0s`;
-                    };
-                }
-            }, 500);
-        }
-
-        document.getElementById("start-btn").onclick = () => {
-            username = document.getElementById("name").value.trim();
-            if (username === "") {
-                alert("Please enter your name to start!");
-                return;
-            }
-            document.getElementById("startModal").style.display = "none";
-            startQuiz();
         };
 
-        const toggleBtn = document.querySelector('.toggle-btn');
-        const toggleIcon = document.querySelector('.toggle-btn i');
-        const dropMenu = document.querySelector('.dropmenu1');
-
-        toggleBtn.onclick = function () {
-            dropMenu.classList.toggle('open');
-            const isOpen = dropMenu.classList.contains('open');
-            toggleIcon.className = isOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
-        }
-    </script>
-
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
-        import { getDatabase, ref, set, push, onValue, get, child } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-database.js";
-
-        const firebaseConfig = {
-        apiKey: "AIzaSyDy7XQNcR15-rNkgFmwacjp0x03SDN0Dkw",
-        authDomain: "louis-gsd-department.firebaseapp.com",
-        projectId: "louis-gsd-department",
-        storageBucket: "louis-gsd-department.appspot.com",
-        messagingSenderId: "578702651837",
-        appId: "1:578702651837:web:79d93b30605097476362d4",
-        measurementId: "G-V231T7756K"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const database = getDatabase(app);
-
-        // Preload leaderboard with default entry
+        // Firebase functions
         async function preloadLeaderboard() {
             const scoresRef = ref(database, 'leaderboard');
             const snapshot = await get(scoresRef);
-
             if (!snapshot.exists()) {
-                // Add default user
                 const newScoreRef = push(scoresRef);
                 set(newScoreRef, { name: "Louis Naingue", score: 25, time: 100 });
             }
         }
 
-        // Save user score
-        function saveScore(name, score, time) {
+        async function saveScoreToFirebase(name, score, time) {
             const scoresRef = ref(database, 'leaderboard');
             const newScoreRef = push(scoresRef);
-            set(newScoreRef, { name, score, time });
+            await set(newScoreRef, { name, score, time });
         }
 
-        // Display real-time leaderboard
         function displayLeaderboard() {
-            const list = document.getElementById("displayList");
             const scoresRef = ref(database, 'leaderboard');
-
-            onValue(scoresRef, (snapshot) => {
+            onValue(scoresRef, snapshot => {
                 const leaderboard = snapshot.val();
-                list.innerHTML = "";
-
+                displayList.innerHTML = "";
                 if (leaderboard) {
-                    const sorted = Object.values(leaderboard)
-                        .sort((a, b) => b.score - a.score || a.time - b.time)
-                        .slice(0, 5);
-
-                    sorted.forEach(entry => {
-                        const li = document.createElement("li");
-                        li.innerHTML = `<span>${entry.name}</span><span>${entry.score}/25</span><span>${entry.time}s</span>`;
-                        list.appendChild(li);
-                    });
+                const sorted = Object.values(leaderboard)
+                    .sort((a,b) => b.score - a.score || a.time - b.time)
+                    .slice(0,5);
+                sorted.forEach(entry => {
+                    const li = document.createElement("li");
+                    li.innerHTML = `<span>${entry.name}</span><span>${entry.score}/25</span><span>${entry.time}s</span>`;
+                    displayList.appendChild(li);
+                });
                 }
             });
         }
 
-        // Initialize on page load
+        // Initialize
         window.onload = async function() {
             await preloadLeaderboard();
             displayLeaderboard();
         };
-    </script>
 
+        // Toggle menu
+        const toggleBtn = document.querySelector('.toggle-btn');
+        const dropMenu = document.querySelector('.dropmenu1');
+        toggleBtn.onclick = () => {
+            dropMenu.classList.toggle('open');
+            toggleBtn.firstElementChild.className = dropMenu.classList.contains('open') ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
+        };
+        </script>
 </body>
 </html>
