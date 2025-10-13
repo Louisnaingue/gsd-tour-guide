@@ -127,6 +127,14 @@ h2 {
     padding: 10px;
     font-family: "Cinzel", serif;
 }
+.TO{
+    border-radius: 10px;
+    background-color: rgb(156, 48, 27);
+    text-align: center;
+    color: rgb(246, 246, 246);
+    padding: 10px;
+    font-family: "Cinzel", serif;
+}
 .TA{
     border-radius: 10px;
     background-color: rgb(18, 137, 61);
@@ -412,6 +420,16 @@ p {
     width: 170px;             /* set image width */
     height: auto;             /* keeps proportion */
 }
+.image-left3 {
+    display: flex;            /* puts image and text side by side */
+    align-items: center;      /* vertically centers them */
+    gap: 10px;                /* space between image and text */
+    margin-bottom: 0;      /* space after section */
+}
+.image-left3 img {
+    width: 250px;             /* set image width */
+    height: auto;             /* keeps proportion */
+}
 .image-right {
     display: flex;            /* puts image and text side by side */
     align-items: center;      /* vertically centers them */
@@ -530,6 +548,13 @@ p {
     text-align: left;
     background-color: rgb(18, 137, 61);
 }
+
+.term4{
+    margin: 0;
+    text-align: left;
+    background-color: rgb(156, 48, 27);
+}
+
 
 .pos {
     margin-left: 20px;
@@ -685,6 +710,61 @@ p {
     border-radius: 5px;
     
       
+}
+.dropmenuto {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 60px;
+    width: 150px;
+    background-color: rgba(255, 255, 255, 0.3); 
+    backdrop-filter: blur(15px);
+    overflow: hidden;
+    transition: height 0.3s ease;
+    border-bottom-right-radius: 10px;
+}
+
+
+/* When open */
+.dropmenuto.open {
+    display: block;
+    height: 250px;
+}
+
+/* Menu items */
+.dropmenuto li {
+    padding: 5px;
+    display: flex;
+}
+.dropmenuto ul {
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;       
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    font-family: sans-serif;
+    font-size: small;
+}
+.dropmenuto a:hover {
+    background-color: rgb(61, 13, 117); /* change background color on hover */
+    color: white;                       /* change text color on hover */
+    transform: scale(1.05);             /* slightly enlarge the box */
+    transition: all 0.3s ease;          /* smooth animation */
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.3); /* add shadow */
+}
+
+.dropmenuto a {
+    color: rgb(0, 0, 0); border: 1px solid black;    /* box border */
+    background-color: #ffffff;  /* light background */
+    color: rgb(91, 33, 56);               /* text color */
+    padding: 1px;              /* space inside the box */
+    margin: 0;              /* space between boxes */ 
+    width: 120px;
+    box-shadow: 2px 1px;
+    border-radius: 5px; 
 }
 .dropmenuh {
     display: none;
