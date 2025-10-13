@@ -981,7 +981,6 @@
         let startTime;
         let timerInterval;
         let username;
-        const leaderboardKey = "quizLeaderboard";
 
         const quizContainer = document.getElementById("quiz");
         const scoreBox = document.getElementById("score-box");
@@ -1003,7 +1002,7 @@
 
         function startQuiz() {
             const shuffledQuestions = shuffleArray(questions);
-            quizQuestions = shuffledQuestions.slice(0, 25); 
+            quizQuestions = shuffledQuestions.slice(0, 25);
             currentQuestion = 0;
             score = 0;
 
@@ -1045,7 +1044,6 @@
                 } else {
                     stopStopwatch();
                     const totalTime = Math.floor((Date.now() - startTime) / 1000);
-
                     saveScore(username, score, totalTime);
 
                     quizContainer.innerHTML = `
@@ -1065,54 +1063,6 @@
             }, 500);
         }
 
-        function preloadLeaderboard() {
-            let leaderboard = JSON.parse(localStorage.getItem(leaderboardKey)) || [];
-
-                // Only add default if leaderboard is empty
-                if (leaderboard.length === 0) {
-                    leaderboard.push({
-                    name: "Louis Naingue",
-                    score: 25,
-                    time: 100
-                });
-
-                localStorage.setItem(leaderboardKey, JSON.stringify(leaderboard));
-                }
-        }
-        // Save scores and sort top 5
-        function saveScore(name, score, time) {
-            let leaderboard = JSON.parse(localStorage.getItem(leaderboardKey)) || [];
-
-            leaderboard.push({ name, score, time });
-
-            // Sort: highest score first, then shortest time
-            leaderboard.sort((a, b) => b.score - a.score || a.time - b.time);
-
-            // Keep only top 5
-            leaderboard = leaderboard.slice(0, 5);
-
-            localStorage.setItem(leaderboardKey, JSON.stringify(leaderboard));
-
-            displayLeaderboard();
-        }
-
-        function displayLeaderboard() {
-            const list = document.getElementById("displayList");
-            list.innerHTML = "";
-
-            const leaderboard = JSON.parse(localStorage.getItem(leaderboardKey)) || [];
-            leaderboard.forEach(entry => {
-                const li = document.createElement("li");
-                li.innerHTML = `
-                <span >${entry.name}</span>
-                <span >${entry.score}/25</span>
-                <span >${entry.time}s</span>
-                `;
-                list.appendChild(li);
-            });
-        }
-
-        // Modal start
         document.getElementById("start-btn").onclick = () => {
             username = document.getElementById("name").value.trim();
             if (username === "") {
@@ -1122,48 +1072,83 @@
             document.getElementById("startModal").style.display = "none";
             startQuiz();
         };
-        
 
-        // Load leaderboard on page load
-        window.onload = function() {
-            preloadLeaderboard();
+        const toggleBtn = document.querySelector('.toggle-btn');
+        const toggleIcon = document.querySelector('.toggle-btn i');
+        const dropMenu = document.querySelector('.dropmenu1');
+
+        toggleBtn.onclick = function () {
+            dropMenu.classList.toggle('open');
+            const isOpen = dropMenu.classList.contains('open');
+            toggleIcon.className = isOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
+        }
+    </script>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+        import { getDatabase, ref, set, push, onValue, get, child } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-database.js";
+
+        const firebaseConfig = {
+        apiKey: "AIzaSyDy7XQNcR15-rNkgFmwacjp0x03SDN0Dkw",
+        authDomain: "louis-gsd-department.firebaseapp.com",
+        projectId: "louis-gsd-department",
+        storageBucket: "louis-gsd-department.appspot.com",
+        messagingSenderId: "578702651837",
+        appId: "1:578702651837:web:79d93b30605097476362d4",
+        measurementId: "G-V231T7756K"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+
+        // Preload leaderboard with default entry
+        async function preloadLeaderboard() {
+            const scoresRef = ref(database, 'leaderboard');
+            const snapshot = await get(scoresRef);
+
+            if (!snapshot.exists()) {
+                // Add default user
+                const newScoreRef = push(scoresRef);
+                set(newScoreRef, { name: "Louis Naingue", score: 25, time: 100 });
+            }
+        }
+
+        // Save user score
+        function saveScore(name, score, time) {
+            const scoresRef = ref(database, 'leaderboard');
+            const newScoreRef = push(scoresRef);
+            set(newScoreRef, { name, score, time });
+        }
+
+        // Display real-time leaderboard
+        function displayLeaderboard() {
+            const list = document.getElementById("displayList");
+            const scoresRef = ref(database, 'leaderboard');
+
+            onValue(scoresRef, (snapshot) => {
+                const leaderboard = snapshot.val();
+                list.innerHTML = "";
+
+                if (leaderboard) {
+                    const sorted = Object.values(leaderboard)
+                        .sort((a, b) => b.score - a.score || a.time - b.time)
+                        .slice(0, 5);
+
+                    sorted.forEach(entry => {
+                        const li = document.createElement("li");
+                        li.innerHTML = `<span>${entry.name}</span><span>${entry.score}/25</span><span>${entry.time}s</span>`;
+                        list.appendChild(li);
+                    });
+                }
+            });
+        }
+
+        // Initialize on page load
+        window.onload = async function() {
+            await preloadLeaderboard();
             displayLeaderboard();
         };
-        </script>
-
-        <script>
-            const toggleBtn = document.querySelector('.toggle-btn');
-            const toggleIcon = document.querySelector('.toggle-btn i');
-            const dropMenu = document.querySelector('.dropmenu1');
-
-            toggleBtn.onclick = function () {
-                dropMenu.classList.toggle('open');
-                const isOpen = dropMenu.classList.contains('open');
-                toggleIcon.className = isOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
-            }
     </script>
-    <script type="module">
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-analytics.js";
-        // TODO: Add SDKs for Firebase products that you want to use
-        // https://firebase.google.com/docs/web/setup#available-libraries
-      
-        // Your web app's Firebase configuration
-        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-        const firebaseConfig = {
-          apiKey: "AIzaSyDy7XQNcR15-rNkgFmwacjp0x03SDN0Dkw",
-          authDomain: "louis-gsd-department.firebaseapp.com",
-          projectId: "louis-gsd-department",
-          storageBucket: "louis-gsd-department.appspot.com",
-          messagingSenderId: "578702651837",
-          appId: "1:578702651837:web:79d93b30605097476362d4",
-          measurementId: "G-V231T7756K"
-        };
-      
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
-      </script>
+
 </body>
 </html>
