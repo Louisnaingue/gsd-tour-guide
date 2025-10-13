@@ -1142,5 +1142,64 @@
                 toggleIcon.className = isOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
             }
     </script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, getDocs, query, orderBy, limit } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
+        
+        const firebaseConfig = {
+          apiKey: "AIzaSyDy7XQNcR15-rNkgFmwacjp0x03SDN0Dkw",
+          authDomain: "louis-gsd-department.firebaseapp.com",
+          projectId: "louis-gsd-department",
+          storageBucket: "louis-gsd-department.appspot.com",
+          messagingSenderId: "578702651837",
+          appId: "1:578702651837:web:79d93b30605097476362d4",
+          measurementId: "G-V231T7756K"
+        };
+      
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+      
+        // --- Save to Firebase ---
+        async function saveToFirebase(name, score, time) {
+          try {
+            await addDoc(collection(db, "leaderboard"), { name, score, time });
+            console.log("Saved to Firebase:", name, score, time);
+          } catch (e) {
+            console.error("Error saving score:", e);
+          }
+        }
+      
+        // --- Load leaderboard from Firebase ---
+        async function loadFromFirebase() {
+          const leaderboardRef = collection(db, "leaderboard");
+          const q = query(leaderboardRef, orderBy("score", "desc"), orderBy("time", "asc"), limit(5));
+          const querySnapshot = await getDocs(q);
+          const leaderboard = [];
+          querySnapshot.forEach((doc) => leaderboard.push(doc.data()));
+          return leaderboard;
+        }
+      
+        // --- Replace local displayLeaderboard() with Firebase version ---
+        async function displayLeaderboard() {
+          const list = document.getElementById("displayList");
+          list.innerHTML = "";
+          const leaderboard = await loadFromFirebase();
+          leaderboard.forEach(entry => {
+            const li = document.createElement("li");
+            li.innerHTML = `<span>${entry.name}</span><span>${entry.score}/25</span><span>${entry.time}s</span>`;
+            list.appendChild(li);
+          });
+        }
+      
+        // --- Replace saveScore() with Firebase version ---
+        async function saveScore(name, score, time) {
+          await saveToFirebase(name, score, time);
+          displayLeaderboard();
+        }
+      
+        // Load leaderboard when page opens
+        window.onload = displayLeaderboard;
+    </script>
+      
 </body>
 </html>
