@@ -1122,6 +1122,8 @@
             document.getElementById("startModal").style.display = "none";
             startQuiz();
         };
+        localStorage.removeItem("quizLeaderboard");
+        
 
         // Load leaderboard on page load
         window.onload = function() {
