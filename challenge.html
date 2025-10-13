@@ -9,46 +9,48 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="head7">
         <header>
             <div class="navbar">
-            <div class="toggle-btn">
-                <i class="fa-solid fa-bars"></i>
+                <div class="toggle-btn">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+                <div class="center-section">
+                    <p class="title1">ISLAND KNOWLEDGE</p>
+                </div>
+                <div class="dropmenu1">
+                    <ul class="ulclass">
+                        <li></li>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="gameR.html">Random</a></li>
+                        <li><a href="gameA.html">Aotearoa</a></li>
+                        <li><a href="gameF.html">Fiji</a></li>
+                        <li><a href="gameH.html">Hawaii</a></li>
+                        <li><a href="gameT.html">Tahiti</a></li>
+                        <li><a href="gameTO.html">Tonga</a></li>
+                        <li><a href="game.html">Samoa</a></li>
+                        <li><a href="gameE.html">Rapanui</a></li>
+                        <li><a href="challenge.html">Challenge</a></li>
+                    </ul>
+                </div>
             </div>
-        <div class="center-section">
-            <p class="title1">ISLAND KNOWLEDGE</p>
-        </div>
-        <div class="dropmenu1">
-            <ul class="ulclass">
-                <li></li>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="gameR.html">Random</a></li>
-                <li><a href="gameA.html">Aotearoa</a></li>
-                <li><a href="gameF.html">Fiji</a></li>
-                <li><a href="gameH.html">Hawaii</a></li>
-                <li><a href="gameT.html">Tahiti</a></li>
-                <li><a href="gameTO.html">Tonga</a></li>
-                <li><a href="game.html">Samoa</a></li>
-                <li><a href="gameE.html">Rapanui</a></li>
-                <li><a href="challenge.html">Challenge</a></li>
-            </ul>
-        </div>
         </header>
     </div>
+
+    <!-- Start Quiz Modal -->
     <div id="startModal" class="modal">
         <div class="modal-content">
-            <label id="names" for="username">Name: </label>
+            <label for="username">Name: </label>
             <input id="name">
-            <br>
-            <br>
-          <button id="start-btn" onclick="storeInput()">Start Quiz</button>
+            <br><br>
+            <button id="start-btn">Start Quiz</button>
         </div>
-      </div>
+    </div>
+
+    <!-- Main Quiz Content -->
     <main>
         <div class="tops">
             <h4 class="cha">Top Challenger</h4>
@@ -56,7 +58,7 @@
             <h4 class="beat">Time</h4>
         </div>
         <ul id="displayList"></ul>
-        <br><br>
+
         <div class="score-title">C H A L L E N G E</div>
         <p id="user-name"></p>
         <div class="score-board">
@@ -70,15 +72,73 @@
     <footer class="game">
         <p>&copy; 2025 by Louis Naingue</p>
     </footer>
-    <script>
-    // Shuffle function to randomize questions
-        function shuffleArray(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
-            }
-            return array;
+
+    <!-- Quiz & Leaderboard Script -->
+    <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+    import { getFirestore, collection, addDoc, getDocs, query, orderBy, limit } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
+
+    // Firebase config
+    const firebaseConfig = {
+      apiKey: "AIzaSyDy7XQNcR15-rNkgFmwacjp0x03SDN0Dkw",
+      authDomain: "louis-gsd-department.firebaseapp.com",
+      projectId: "louis-gsd-department",
+      storageBucket: "louis-gsd-department.appspot.com",
+      messagingSenderId: "578702651837",
+      appId: "1:578702651837:web:79d93b30605097476362d4",
+      measurementId: "G-V231T7756K"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // Leaderboard functions
+    async function saveToFirebase(name, score, time) {
+        try {
+            await addDoc(collection(db, "leaderboard"), { name, score, time });
+        } catch (e) {
+            console.error("Error saving score:", e);
         }
+    }
+
+    async function loadFromFirebase() {
+        const leaderboardRef = collection(db, "leaderboard");
+        const q = query(leaderboardRef, orderBy("score", "desc"), orderBy("time", "asc"), limit(5));
+        const querySnapshot = await getDocs(q);
+        const leaderboard = [];
+        querySnapshot.forEach(doc => leaderboard.push(doc.data()));
+        return leaderboard;
+    }
+
+    async function displayLeaderboard() {
+        const list = document.getElementById("displayList");
+        list.innerHTML = "";
+        const leaderboard = await loadFromFirebase();
+        leaderboard.forEach(entry => {
+            const li = document.createElement("li");
+            li.innerHTML = `
+                <span>${entry.name}</span>
+                <span>${entry.score}/25</span>
+                <span>${entry.time}s</span>
+            `;
+            list.appendChild(li);
+        });
+    }
+
+    // Quiz variables
+    let quizQuestions = [];
+    let currentQuestion = 0;
+    let score = 0;
+    let startTime;
+    let timerInterval;
+    let username;
+
+    const quizContainer = document.getElementById("quiz");
+    const scoreBox = document.getElementById("score-box");
+    const attemptBox = document.getElementById("attempt-box");
+    const timerBox = document.getElementById("timer-box");
+    const usrname = document.getElementById("user-name");
+
 
         const questions = shuffleArray(
             [
@@ -974,20 +1034,13 @@
                 answer: "The authority to speak"
             }
         ]);
-        
-        let quizQuestions = [];
-        let currentQuestion = 0;
-        let score = 0;
-        let startTime;
-        let timerInterval;
-        let username;
-        const leaderboardKey = "quizLeaderboard";
-
-        const quizContainer = document.getElementById("quiz");
-        const scoreBox = document.getElementById("score-box");
-        const attemptBox = document.getElementById("attempt-box");
-        const timerBox = document.getElementById("timer-box");
-        const usrname = document.getElementById("user-name");
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
 
         function startStopwatch() {
             startTime = Date.now();
@@ -1002,16 +1055,13 @@
         }
 
         function startQuiz() {
-            const shuffledQuestions = shuffleArray(questions);
-            quizQuestions = shuffledQuestions.slice(0, 25); 
+            quizQuestions = shuffleArray(questions).slice(0, 25);
             currentQuestion = 0;
             score = 0;
-
             scoreBox.textContent = `Score: 0/${quizQuestions.length}`;
             attemptBox.textContent = `Questions Left: ${quizQuestions.length}`;
             timerBox.textContent = `Time: 0s`;
             usrname.textContent = `Challenger: ${username}`;
-
             showQuestion(currentQuestion);
             stopStopwatch();
             startStopwatch();
@@ -1037,7 +1087,7 @@
 
             scoreBox.textContent = `Score: ${score}/${quizQuestions.length}`;
 
-            setTimeout(() => {
+            setTimeout(async () => {
                 currentQuestion++;
                 if (currentQuestion < quizQuestions.length) {
                     showQuestion(currentQuestion);
@@ -1045,8 +1095,8 @@
                 } else {
                     stopStopwatch();
                     const totalTime = Math.floor((Date.now() - startTime) / 1000);
-
-                    saveScore(username, score, totalTime);
+                    await saveToFirebase(username, score, totalTime);
+                    await displayLeaderboard();
 
                     quizContainer.innerHTML = `
                         <p class="scored">Quiz Finished!</p>
@@ -1065,73 +1115,43 @@
             }, 500);
         }
 
-        function preloadLeaderboard() {
-            let leaderboard = JSON.parse(localStorage.getItem(leaderboardKey)) || [];
-
-                // Only add default if leaderboard is empty
-                if (leaderboard.length === 0) {
-                    leaderboard.push({
-                    name: "Louis Naingue",
-                    score: 25,
-                    time: 100
-                });
-
-                localStorage.setItem(leaderboardKey, JSON.stringify(leaderboard));
-                }
-        }
-        // Save scores and sort top 5
-        function saveScore(name, score, time) {
-            let leaderboard = JSON.parse(localStorage.getItem(leaderboardKey)) || [];
-
-            leaderboard.push({ name, score, time });
-
-            // Sort: highest score first, then shortest time
-            leaderboard.sort((a, b) => b.score - a.score || a.time - b.time);
-
-            // Keep only top 5
-            leaderboard = leaderboard.slice(0, 5);
-
-            localStorage.setItem(leaderboardKey, JSON.stringify(leaderboard));
-
-            displayLeaderboard();
-        }
-
-        function displayLeaderboard() {
-            const list = document.getElementById("displayList");
-            list.innerHTML = "";
-
-            const leaderboard = JSON.parse(localStorage.getItem(leaderboardKey)) || [];
-            leaderboard.forEach(entry => {
-                const li = document.createElement("li");
-                li.innerHTML = `
-                <span >${entry.name}</span>
-                <span >${entry.score}/25</span>
-                <span >${entry.time}s</span>
-                `;
-                list.appendChild(li);
-            });
-        }
-
-        // Modal start
+        // Start Quiz button
         document.getElementById("start-btn").onclick = () => {
             username = document.getElementById("name").value.trim();
-            if (username === "") {
+            if (!username) {
                 alert("Please enter your name to start!");
                 return;
             }
             document.getElementById("startModal").style.display = "none";
             startQuiz();
         };
-        
+        async function addDefaultScore() {
+            const leaderboardRef = collection(db, "leaderboard");
+            
+            // Check if your specific entry already exists
+            const snapshot = await getDocs(query(leaderboardRef, orderBy("score", "desc")));
+            let exists = false;
+            snapshot.forEach(doc => {
+                const data = doc.data();
+                if (data.name === "Louis Naingue" && data.score === 25) {
+                    exists = true;
+                }
+            });
 
-        // Load leaderboard on page load
-        window.onload = function() {
-            preloadLeaderboard();
-            displayLeaderboard();
+            if (!exists) {
+                await addDoc(leaderboardRef, { name: "Louis Naingue", score: 25, time: 100 });
+                console.log("Default score added!");
+            }
+        }
+
+        // Show leaderboard immediately on page load
+        window.onload = async () => {
+            await displayLeaderboard();
         };
         </script>
 
         <script>
+            // Toggle menu
             const toggleBtn = document.querySelector('.toggle-btn');
             const toggleIcon = document.querySelector('.toggle-btn i');
             const dropMenu = document.querySelector('.dropmenu1');
@@ -1142,64 +1162,5 @@
                 toggleIcon.className = isOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
             }
     </script>
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
-        import { getFirestore, collection, addDoc, getDocs, query, orderBy, limit } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
-        
-        const firebaseConfig = {
-          apiKey: "AIzaSyDy7XQNcR15-rNkgFmwacjp0x03SDN0Dkw",
-          authDomain: "louis-gsd-department.firebaseapp.com",
-          projectId: "louis-gsd-department",
-          storageBucket: "louis-gsd-department.appspot.com",
-          messagingSenderId: "578702651837",
-          appId: "1:578702651837:web:79d93b30605097476362d4",
-          measurementId: "G-V231T7756K"
-        };
-      
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-      
-        // --- Save to Firebase ---
-        async function saveToFirebase(name, score, time) {
-          try {
-            await addDoc(collection(db, "leaderboard"), { name, score, time });
-            console.log("Saved to Firebase:", name, score, time);
-          } catch (e) {
-            console.error("Error saving score:", e);
-          }
-        }
-      
-        // --- Load leaderboard from Firebase ---
-        async function loadFromFirebase() {
-          const leaderboardRef = collection(db, "leaderboard");
-          const q = query(leaderboardRef, orderBy("score", "desc"), orderBy("time", "asc"), limit(5));
-          const querySnapshot = await getDocs(q);
-          const leaderboard = [];
-          querySnapshot.forEach((doc) => leaderboard.push(doc.data()));
-          return leaderboard;
-        }
-      
-        // --- Replace local displayLeaderboard() with Firebase version ---
-        async function displayLeaderboard() {
-          const list = document.getElementById("displayList");
-          list.innerHTML = "";
-          const leaderboard = await loadFromFirebase();
-          leaderboard.forEach(entry => {
-            const li = document.createElement("li");
-            li.innerHTML = `<span>${entry.name}</span><span>${entry.score}/25</span><span>${entry.time}s</span>`;
-            list.appendChild(li);
-          });
-        }
-      
-        // --- Replace saveScore() with Firebase version ---
-        async function saveScore(name, score, time) {
-          await saveToFirebase(name, score, time);
-          displayLeaderboard();
-        }
-      
-        // Load leaderboard when page opens
-        window.onload = displayLeaderboard;
-    </script>
-      
 </body>
 </html>
